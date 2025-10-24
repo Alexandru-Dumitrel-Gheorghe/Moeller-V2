@@ -1,27 +1,51 @@
 .section {
   position: relative;
-  padding: clamp(60px, 8vh, 100px) clamp(20px, 4vw, 60px);
-  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+  padding: clamp(80px, 10vh, 120px) clamp(24px, 4vw, 80px);
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
   color: #ffffff;
   font-family: var(--font-primary);
+  isolation: isolate;
   overflow: hidden;
 }
 
-/* Clean Background */
-.background {
+/* Background Elements pe fundal întunecat */
+.backgroundElements {
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-      circle at 20% 80%,
-      rgba(213, 25, 32, 0.1) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 80% 20%,
-      rgba(255, 255, 255, 0.05) 0%,
-      transparent 50%
-    );
-  z-index: -1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.backgroundGrid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(213, 25, 32, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(213, 25, 32, 0.1) 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: 0.05;
+}
+
+.cornerAccent {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 1px solid rgba(213, 25, 32, 0.3);
+  pointer-events: none;
+  opacity: 0.1;
+}
+
+.cornerAccent:nth-child(2) {
+  top: -100px;
+  left: -100px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.cornerAccent:nth-child(3) {
+  bottom: -100px;
+  right: -100px;
+  border-left: none;
+  border-top: none;
 }
 
 .redAccent {
@@ -32,39 +56,43 @@
   height: 3px;
   background: linear-gradient(
     90deg,
-    transparent 0%,
+    var(--red-dark) 0%,
     var(--red-medium) 50%,
-    transparent 100%
+    var(--red-dark) 100%
   );
+  z-index: 2;
 }
 
 .container {
-  max-width: 1200px;
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
-/* Header - Clean */
+/* Header - Stilizat pentru fundal întunecat */
 .header {
   text-align: center;
-  margin-bottom: clamp(40px, 6vh, 60px);
+  margin-bottom: clamp(50px, 6vh, 70px);
 }
 
 .title {
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-size: clamp(2rem, 5vw, 2.8rem);
   font-weight: 300;
-  line-height: 1.2;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   color: #ffffff;
-  margin: 0 0 20px 0;
+  margin: 0 0 clamp(16px, 2vh, 24px) 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .titleMain {
   font-weight: 700;
-  font-size: 1em;
+  font-size: 1.2em;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   background: linear-gradient(135deg, #ffffff, #e0e0e0);
   -webkit-background-clip: text;
   background-clip: text;
@@ -72,48 +100,66 @@
 }
 
 .titleSub {
-  font-size: 0.5em;
+  font-size: 0.35em;
   font-weight: 300;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   opacity: 0.8;
   text-transform: none;
+  line-height: 1.3;
   color: rgba(255, 255, 255, 0.7);
 }
 
 .titleUnderline {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  position: relative;
+  width: min(120px, 25vw);
+  height: 3px;
+  margin: 0 auto;
+}
+
+.underlineMain {
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .underlineAccent {
-  width: 60px;
-  height: 3px;
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 50px;
+  height: 1px;
   background: var(--red-medium);
-  border-radius: 2px;
 }
 
-/* Services Grid - Clean & Spacious */
+/* Services Grid - Adaptat pentru dark theme */
 .servicesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 24px;
   margin-bottom: clamp(50px, 6vh, 70px);
 }
 
-/* Service Card - Simple & Clean */
+/* Service Card - Stilizat ca cardurile tale */
 .serviceCard {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 16px;
-  padding: 32px 24px;
+  padding: 40px 32px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+}
+
+.serviceCard:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(213, 25, 32, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
 }
 
 .serviceCard::before {
@@ -125,32 +171,27 @@
   height: 2px;
   background: var(--red-medium);
   transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
-
-.serviceCard:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-4px);
+  transition: transform 0.4s ease;
 }
 
 .serviceCard:hover::before {
   transform: scaleX(1);
 }
 
-/* Percentage - Clean */
+/* Percentage - Stilizat */
 .percentageWrapper {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .percentage {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #ffffff, #f0f0f0);
+  background: linear-gradient(135deg, var(--red-medium), #ffffff);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   line-height: 1;
+  font-family: var(--font-primary);
 }
 
 /* Service Content */
@@ -162,7 +203,7 @@
   font-size: 1.1rem;
   font-weight: 600;
   color: #ffffff;
-  margin: 0 0 16px 0;
+  margin: 0 0 20px 0;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   line-height: 1.3;
@@ -172,9 +213,9 @@
   width: 40px;
   height: 2px;
   background: var(--red-medium);
-  margin: 0 auto 20px auto;
-  border-radius: 2px;
-  transition: width 0.3s ease;
+  margin: 0 auto 24px auto;
+  border-radius: 1px;
+  transition: width 0.4s ease;
 }
 
 .serviceCard:hover .titleLine {
@@ -182,13 +223,14 @@
 }
 
 .serviceDescription {
-  font-size: 1rem;
-  line-height: 1.5;
+  font-size: 1.05rem;
+  line-height: 1.6;
   color: rgba(255, 255, 255, 0.8);
   margin: 0;
+  font-weight: 300;
 }
 
-/* CTA Button - Clean */
+/* CTA Button - Stilizat ca în design-ul tău */
 .ctaWrapper {
   display: flex;
   justify-content: center;
@@ -198,25 +240,27 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  padding: 16px 32px;
+  padding: clamp(14px, 2vh, 18px) clamp(28px, 3vw, 36px);
   background: transparent;
   color: #ffffff;
   border: 2px solid var(--red-medium);
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 1.8vw, 1rem);
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
   letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .cta:hover {
   background: var(--red-medium);
   color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(213, 25, 32, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(213, 25, 32, 0.25);
 }
 
 .ctaArrow {
@@ -224,15 +268,34 @@
 }
 
 .cta:hover .ctaArrow {
-  transform: translateX(4px);
+  transform: translateX(5px);
 }
 
-/* ===== RESPONSIVE DESIGN - OPTIMIZAT ===== */
+.ctaLine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.cta:hover .ctaLine {
+  left: 100%;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
 
 /* Tablet */
 @media (max-width: 1024px) {
   .section {
-    padding: 60px 32px;
+    padding: 70px 32px;
   }
 
   .servicesGrid {
@@ -241,14 +304,18 @@
   }
 
   .serviceCard {
-    padding: 28px 20px;
+    padding: 32px 24px;
+  }
+
+  .percentage {
+    font-size: 2.4rem;
   }
 }
 
 /* Mobile Large */
 @media (max-width: 768px) {
   .section {
-    padding: 50px 24px;
+    padding: 60px 24px;
   }
 
   .servicesGrid {
@@ -258,7 +325,7 @@
   }
 
   .serviceCard {
-    padding: 24px 20px;
+    padding: 28px 20px;
     margin: 0 auto;
     max-width: 400px;
     width: 100%;
@@ -273,24 +340,18 @@
   }
 
   .serviceDescription {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 
   .title {
-    font-size: clamp(1.6rem, 6vw, 2.2rem);
-    margin-bottom: 16px;
-    margin-top: 2rem;
-  }
-
-  .titleMain {
-    letter-spacing: 0.08em;
+    font-size: clamp(1.8rem, 6vw, 2.2rem);
   }
 
   .cta {
-    padding: 14px 28px;
-    font-size: 0.95rem;
+    padding: 12px 24px;
+    font-size: 0.9rem;
     width: 100%;
-    max-width: 300px;
+    max-width: 280px;
     justify-content: center;
   }
 }
@@ -298,7 +359,7 @@
 /* Mobile Small */
 @media (max-width: 480px) {
   .section {
-    padding: 40px 20px;
+    padding: 50px 20px;
   }
 
   .servicesGrid {
@@ -306,7 +367,7 @@
   }
 
   .serviceCard {
-    padding: 20px 16px;
+    padding: 24px 16px;
   }
 
   .percentage {
@@ -316,39 +377,28 @@
   .serviceTitle {
     font-size: 0.95rem;
     letter-spacing: 0.06em;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
   }
 
   .serviceDescription {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 
   .title {
-    font-size: clamp(1.4rem, 7vw, 2rem);
+    font-size: clamp(1.6rem, 7vw, 2rem);
+  }
+
+  .titleMain {
+    letter-spacing: 0.06em;
   }
 
   .titleSub {
-    font-size: 0.45em;
+    font-size: 0.3em;
   }
 
   .cta {
-    padding: 12px 24px;
+    padding: 12px 20px;
     font-size: 0.9rem;
-  }
-}
-
-/* Extra Small Devices */
-@media (max-width: 360px) {
-  .section {
-    padding: 30px 16px;
-  }
-
-  .serviceCard {
-    padding: 18px 14px;
-  }
-
-  .percentage {
-    font-size: 1.8rem;
   }
 }
 
@@ -356,7 +406,8 @@
 @media (prefers-reduced-motion: reduce) {
   .serviceCard,
   .cta,
-  .titleLine {
+  .titleLine,
+  .ctaArrow {
     transition: none;
   }
 

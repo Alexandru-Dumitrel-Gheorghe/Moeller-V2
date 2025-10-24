@@ -39,8 +39,12 @@ const SERVICES: ServiceItem[] = [
 export default function Leistungen() {
   return (
     <section className={styles.section} aria-labelledby="leistungen-title">
-      {/* Simplified Background */}
-      <div className={styles.background} />
+      {/* Background Elements pe fundal întunecat */}
+      <div className={styles.backgroundElements}>
+        <div className={styles.backgroundGrid} />
+        <div className={styles.cornerAccent} />
+        <div className={styles.cornerAccent} />
+      </div>
 
       {/* Red Accent Line */}
       <div className={styles.redAccent} />
@@ -53,11 +57,12 @@ export default function Leistungen() {
             <span className={styles.titleSub}>Unsere Werte</span>
           </h2>
           <div className={styles.titleUnderline}>
+            <div className={styles.underlineMain} />
             <div className={styles.underlineAccent} />
           </div>
         </div>
 
-        {/* Services Grid - Clean Layout */}
+        {/* Services Grid */}
         <div className={styles.servicesGrid}>
           {SERVICES.map((service, index) => (
             <div key={index} className={styles.serviceCard}>
@@ -93,6 +98,7 @@ export default function Leistungen() {
                 />
               </svg>
             </div>
+            <div className={styles.ctaLine} />
           </a>
         </div>
       </div>
