@@ -145,21 +145,20 @@
   background: transparent;
   color: var(--text-color);
   border: 2px solid rgba(0, 0, 0, 0.8);
-  border-radius: 12px;
+  border-radius: 8px;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
-  display: none;
 }
 
 .squareCta:hover {
   background: var(--red-medium);
   border-color: var(--red-medium);
   color: white;
-  transform: translateY(-3px) scale(1.05);
+  transform: translateY(-3px);
   box-shadow: 0 15px 40px rgba(213, 25, 32, 0.25);
 }
 
@@ -188,38 +187,31 @@
   transform: rotate(90deg);
 }
 
-/* Content Layout - FAQ left, Contact Card right */
-.contentLayout {
-  display: grid;
-  grid-template-columns: 1fr 400px;
-  gap: 60px;
-  align-items: start;
-}
-
-/* FAQ Container */
+/* FAQ Container - Redesign to match your style */
 .faqContainer {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .faqItem {
   background: #fff;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
 }
 
 .faqItem:hover {
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.12);
   transform: translateY(-2px);
 }
 
 .faqItem.active {
-  box-shadow: 0 8px 35px rgba(213, 25, 32, 0.15);
-  border-color: rgba(213, 25, 32, 0.1);
+  box-shadow: 0 12px 50px rgba(213, 25, 32, 0.15);
+  border-color: rgba(213, 25, 32, 0.2);
 }
 
 .question {
@@ -235,6 +227,7 @@
   text-align: left;
   cursor: pointer;
   transition: all 0.3s ease;
+  position: relative;
 }
 
 .question:hover {
@@ -253,6 +246,10 @@
   font-weight: 700;
   color: var(--red-medium);
   min-width: 30px;
+  background: rgba(213, 25, 32, 0.1);
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-align: center;
 }
 
 .questionText {
@@ -266,11 +263,15 @@
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   color: var(--text-light);
   flex-shrink: 0;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 8px;
+  border-radius: 6px;
 }
 
 .faqItem.active .arrow {
   transform: rotate(180deg);
   color: var(--red-medium);
+  background: rgba(213, 25, 32, 0.1);
 }
 
 .answer {
@@ -285,16 +286,19 @@
 
 .answerContent {
   padding: 0 32px 28px 82px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  margin-top: -1px;
 }
 
 .answerContent p {
   font-size: 1.05rem;
-  line-height: 1.6;
+  line-height: 1.7;
   color: var(--text-light);
   margin: 0;
+  font-weight: 300;
 }
 
-/* Contact Card */
+/* Contact Card - Stilizat să se potrivească */
 .contactCard {
   background: #fff;
   border-radius: 16px;
@@ -330,6 +334,7 @@
   line-height: 1.6;
   color: var(--text-light);
   margin-bottom: 32px;
+  font-weight: 300;
 }
 
 .contactButton {
@@ -337,22 +342,25 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  background: var(--red-medium);
-  color: white;
+  background: transparent;
+  color: var(--text-color);
   text-decoration: none;
   padding: 16px 32px;
-  border-radius: 12px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 1rem;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  border: 2px solid var(--red-medium);
+  border: 2px solid rgba(0, 0, 0, 0.8);
   width: 100%;
   max-width: 240px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .contactButton:hover {
-  background: var(--red-dark);
-  border-color: var(--red-dark);
+  background: var(--red-medium);
+  border-color: var(--red-medium);
+  color: white;
   transform: translateY(-2px);
   box-shadow: 0 12px 30px rgba(213, 25, 32, 0.25);
 }
@@ -370,10 +378,19 @@
   margin-bottom: 12px;
   font-size: 0.9rem;
   color: var(--text-light);
+  font-weight: 300;
 }
 
 .contactInfoItem:last-child {
   margin-bottom: 0;
+}
+
+/* Layout */
+.contentLayout {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 60px;
+  align-items: start;
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
@@ -428,7 +445,6 @@
 
   .title {
     font-size: clamp(1.8rem, 6vw, 2.2rem);
-    margin-top: 2rem;
   }
 
   .squareCta {
@@ -445,6 +461,7 @@
 
   .questionNumber {
     min-width: 25px;
+    padding: 6px 10px;
   }
 
   .answerContent {
