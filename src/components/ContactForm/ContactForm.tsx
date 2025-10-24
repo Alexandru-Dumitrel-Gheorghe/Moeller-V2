@@ -31,7 +31,7 @@ export default function ContactForm() {
 
   return (
     <section className={styles.section} aria-label="Kontaktformular">
-      {/* Background Elements matching your design */}
+      {/* Background Elements */}
       <div className={styles.backgroundElements}>
         <div className={styles.backgroundGrid} />
         <div className={styles.cornerAccent} />
@@ -42,16 +42,33 @@ export default function ContactForm() {
       <div className={styles.redAccent} />
 
       <div className={styles.container}>
-        {/* Section Header */}
-        <div className={styles.header}>
-          <h2 className={styles.title}>
-            <span className={styles.titleMain}>KONTAKT</span>
-            <span className={styles.titleSub}>Ihr Ansprechpartner</span>
-          </h2>
-          <div className={styles.titleUnderline}>
-            <div className={styles.underlineMain} />
-            <div className={styles.underlineAccent} />
+        {/* Header Row - Title left, Button right */}
+        <div className={styles.headerRow}>
+          <div className={styles.header}>
+            <h2 className={styles.title}>
+              <span className={styles.titleMain}>KONTAKT</span>
+              <span className={styles.titleSub}>Ihr Ansprechpartner</span>
+            </h2>
+            <div className={styles.titleUnderline}>
+              <div className={styles.underlineMain} />
+              <div className={styles.underlineAccent} />
+            </div>
           </div>
+
+          <a href="#termin" className={styles.squareCta}>
+            <span className={styles.ctaIcon}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+            <div className={styles.ctaHover} />
+          </a>
         </div>
 
         <div className={styles.content}>

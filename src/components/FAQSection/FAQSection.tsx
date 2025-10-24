@@ -45,32 +45,47 @@ export default function FAQSection() {
 
   return (
     <section className={styles.section} aria-label="Häufig gestellte Fragen">
-      {/* Background Elements matching VideoHero */}
+      {/* Background Elements */}
       <div className={styles.backgroundElements}>
         <div className={styles.backgroundGrid} />
         <div className={styles.cornerAccent} />
         <div className={styles.cornerAccent} />
       </div>
 
-      {/* Red Accent Line matching Header */}
+      {/* Red Accent Line */}
       <div className={styles.redAccent} />
 
       <div className={styles.container}>
-        {/* Header matching VideoHero title style */}
-        <div className={styles.header}>
-          <h2 className={styles.title}>
-            <span className={styles.titleMain}>Häufige Fragen</span>
-            <span className={styles.titleSub}>
-              Echte Erfahrungen und zufriedene Kunden
-            </span>
-          </h2>
-          <div className={styles.titleUnderline}>
-            <div className={styles.underlineMain} />
-            <div className={styles.underlineAccent} />
+        {/* Header Row - Title left, Button right */}
+        <div className={styles.headerRow}>
+          <div className={styles.header}>
+            <h2 className={styles.title}>
+              <span className={styles.titleMain}>Was unsere Kunden sagen</span>
+              <span className={styles.titleSub}>Häufig gestellte Fragen</span>
+            </h2>
+            <div className={styles.titleUnderline}>
+              <div className={styles.underlineMain} />
+              <div className={styles.underlineAccent} />
+            </div>
           </div>
+
+          <a href="#kontakt" className={styles.squareCta}>
+            <span className={styles.ctaIcon}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 4v16m8-8H4"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+            <div className={styles.ctaHover} />
+          </a>
         </div>
 
-        {/* FAQ Items */}
+        {/* FAQ Items below */}
         <div className={styles.faqContainer}>
           {faqData.map((item, index) => (
             <div
@@ -108,25 +123,6 @@ export default function FAQSection() {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* CTA matching VideoHero button style */}
-        <div className={styles.ctaWrapper}>
-          <a href="#kontakt" className={styles.primaryCta}>
-            <span className={styles.ctaText}>Weitere Fragen?</span>
-            <div className={styles.ctaArrow}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M5 12h14m-7-7l7 7-7 7"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-            <div className={styles.ctaLine} />
-          </a>
         </div>
       </div>
     </section>

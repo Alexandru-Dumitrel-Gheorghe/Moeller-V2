@@ -6,9 +6,12 @@ import QualitatBanner from "@/components/QualitatBanner/QualitatBanner";
 import KuechenHero from "@/components/KuechenHero/KuechenHero";
 import ServiceBanner from "@/components/ServiceBanner/ServiceBanner";
 import CtaSection from "@/components/CtaSection/CtaSection";
+import ReviewsSection from "@/components/Reviews/Reviews";
 import FAQSection from "@/components/FAQSection/FAQSection";
 import ContactForm from "@/components/ContactForm/ContactForm";
 import Footer from "@/components/Footer/Footer";
+import DetailLoesungen from "@/components/DetailLoesungen/DetailLoesungen";
+import Leistungen from "@/components/Leistungen/Leistungen";
 
 export default function Home() {
   return (
@@ -20,6 +23,9 @@ export default function Home() {
       <KuechenHero />
       <ServiceBanner />
       <CtaSection />
+      <DetailLoesungen />
+      <Leistungen />
+      <ReviewsSection />
       <FAQSection />
       <ContactForm />
       <Footer />

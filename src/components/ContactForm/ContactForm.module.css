@@ -1,6 +1,6 @@
 .section {
   position: relative;
-  padding: clamp(100px, 12vh, 140px) clamp(40px, 6vw, 120px);
+  padding: clamp(80px, 10vh, 120px) clamp(24px, 4vw, 80px);
   background: var(--bg-light);
   color: var(--text-color);
   font-family: var(--font-primary);
@@ -8,7 +8,7 @@
   overflow: hidden;
 }
 
-/* Background Elements matching your design */
+/* Background Elements */
 .backgroundElements {
   position: absolute;
   inset: 0;
@@ -66,47 +66,58 @@
 .container {
   position: relative;
   z-index: 1;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
-/* Header matching your design */
+/* Header Row - Title left, Button right */
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: clamp(50px, 6vh, 70px);
+  gap: 40px;
+}
+
+/* Header - Left side */
 .header {
-  text-align: center;
-  margin-bottom: clamp(60px, 8vh, 80px);
+  flex: 1;
+  min-width: 0;
 }
 
 .title {
-  font-size: clamp(2.2rem, 6vw, 3.2rem);
+  font-size: clamp(2rem, 5vw, 2.8rem);
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: -0.02em;
   color: var(--text-color);
-  margin: 0 0 clamp(16px, 2.5vh, 28px) 0;
+  margin: 0 0 clamp(16px, 2vh, 24px) 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-top: 3rem;
+  gap: 6px;
+  word-wrap: break-word;
 }
+
 .titleMain {
-  font-weight: 800;
-  font-size: 1.15em;
+  font-weight: 700;
+  font-size: 1.2em;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
 }
+
 .titleSub {
-  font-size: 0.4em;
+  font-size: 0.35em;
   font-weight: 300;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   opacity: 0.8;
   text-transform: none;
+  line-height: 1.3;
 }
 
 .titleUnderline {
   position: relative;
-  width: min(150px, 30vw);
+  width: min(120px, 25vw);
   height: 3px;
-  margin: 0 auto;
 }
 
 .underlineMain {
@@ -124,37 +135,89 @@
   background: var(--red-medium);
 }
 
-/* Content Layout - UPDATED for equal height */
+/* Square CTA Button - Right side */
+.squareCta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: transparent;
+  color: var(--text-color);
+  border: 2px solid rgba(0, 0, 0, 0.8);
+  border-radius: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.squareCta:hover {
+  background: var(--red-medium);
+  border-color: var(--red-medium);
+  color: white;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 40px rgba(213, 25, 32, 0.25);
+}
+
+.ctaHover {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.squareCta:hover .ctaHover {
+  opacity: 1;
+}
+
+.ctaIcon {
+  transition: transform 0.3s ease;
+}
+
+.squareCta:hover .ctaIcon {
+  transform: scale(1.1);
+}
+
+/* Content Layout */
 .content {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: clamp(40px, 6vw, 80px);
-  align-items: stretch; /* Schimbat de la 'start' la 'stretch' */
+  align-items: stretch;
 }
 
-/* Contact Information - UPDATED for equal height */
+/* Contact Information */
 .contactInfo {
-  display: flex; /* Adăugat */
+  display: flex;
 }
 
 .infoCard {
   background: #fff;
-  padding: 50px 40px; /* Mărit padding-ul vertical */
+  padding: 40px 32px;
   border-radius: 16px;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(0, 0, 0, 0.05);
-  width: 100%; /* Adăugat */
-  display: flex; /* Adăugat */
-  flex-direction: column; /* Adăugat */
-  min-height: 100%; /* Asigură că ocupă întreaga înălțime */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 .infoHeader {
-  margin-bottom: 40px; /* Mărit spațiul */
+  margin-bottom: 32px;
 }
 
 .infoTitle {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 600;
   color: var(--text-color);
   margin: 0 0 12px 0;
@@ -170,8 +233,8 @@
 .infoItems {
   display: flex;
   flex-direction: column;
-  gap: 28px; /* Mărit gap-ul între items */
-  flex: 1; /* Ocupă spațiul disponibil */
+  gap: 24px;
+  flex: 1;
 }
 
 .infoItem {
@@ -195,7 +258,7 @@
 .infoContent {
   display: flex;
   flex-direction: column;
-  gap: 6px; /* Mărit gap-ul */
+  gap: 6px;
   flex: 1;
 }
 
@@ -222,26 +285,26 @@
 .hours {
   display: flex;
   flex-direction: column;
-  gap: 4px; /* Mărit gap-ul */
+  gap: 4px;
 }
 
-/* Form Styles - UPDATED for equal height */
+/* Form Styles */
 .formContainer {
   background: #fff;
-  padding: 50px 40px; /* Mărit padding-ul vertical pentru consistență */
+  padding: 40px 32px;
   border-radius: 16px;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(0, 0, 0, 0.05);
-  height: 100%; /* Asigură că ocupă întreaga înălțime */
-  display: flex; /* Adăugat */
-  flex-direction: column; /* Adăugat */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .form {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  flex: 1; /* Ocupă spațiul disponibil */
+  flex: 1;
 }
 
 .formRow {
@@ -284,15 +347,15 @@
 
 .textarea {
   resize: vertical;
-  min-height: 140px; /* Mărit înălțimea minimă */
-  flex: 1; /* Ocupă spațiul disponibil */
+  min-height: 140px;
+  flex: 1;
 }
 
 .select {
   cursor: pointer;
 }
 
-/* Submit Button matching your design */
+/* Submit Button */
 .submitButton {
   display: inline-flex;
   align-items: center;
@@ -311,7 +374,7 @@
   overflow: hidden;
   letter-spacing: 0.05em;
   align-self: flex-start;
-  margin-top: auto; /* Împinge butonul în jos */
+  margin-top: auto;
 }
 
 .submitButton:hover {
@@ -354,7 +417,11 @@
 /* Tablet */
 @media (max-width: 1024px) {
   .section {
-    padding: 80px 40px;
+    padding: 70px 32px;
+  }
+
+  .headerRow {
+    gap: 30px;
   }
 
   .content {
@@ -362,13 +429,14 @@
     gap: 40px;
   }
 
-  .contactInfo {
-    position: static;
-  }
-
   .infoCard,
   .formContainer {
-    padding: 40px 32px; /* Ajustat padding-ul */
+    padding: 32px 28px;
+  }
+
+  .squareCta {
+    width: 55px;
+    height: 55px;
   }
 }
 
@@ -378,6 +446,20 @@
     padding: 60px 24px;
   }
 
+  .headerRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .title {
+    font-size: clamp(1.8rem, 6vw, 2.2rem);
+  }
+
+  .squareCta {
+    align-self: flex-start;
+  }
+
   .formRow {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -385,7 +467,7 @@
 
   .infoCard,
   .formContainer {
-    padding: 32px 24px; /* Ajustat padding-ul */
+    padding: 28px 24px;
   }
 
   .infoItem {
@@ -404,9 +486,30 @@
     padding: 50px 20px;
   }
 
+  .headerRow {
+    gap: 20px;
+  }
+
+  .title {
+    font-size: clamp(1.6rem, 7vw, 2rem);
+  }
+
+  .titleMain {
+    letter-spacing: 0.06em;
+  }
+
+  .titleSub {
+    font-size: 0.3em;
+  }
+
+  .squareCta {
+    width: 50px;
+    height: 50px;
+  }
+
   .infoCard,
   .formContainer {
-    padding: 28px 20px; /* Ajustat padding-ul */
+    padding: 24px 20px;
   }
 
   .submitButton {
@@ -417,6 +520,7 @@
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
+  .squareCta,
   .submitButton,
   .input,
   .select,
@@ -424,6 +528,7 @@
     transition: none;
   }
 
+  .squareCta:hover,
   .submitButton:hover {
     transform: none;
   }
