@@ -3,92 +3,81 @@
 import { useEffect, useRef } from "react";
 import styles from "./Modal.module.css";
 
+type ModalSize = "sm" | "md" | "lg" | "xl";
+
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
+  /** Titlu afişat în header-ul modalului */
   title?: string;
-  children: React.ReactNode;
-  size?: "sm" | "md" | "lg" | "xl";
+  /** Dimensiune modal: afectează lățimea maximă */
+  size?: ModalSize;
+  /** Conținutul modalului (formularul tău etc.) */
+  children?: React.ReactNode;
 }
 
 export default function Modal({
   isOpen,
   onClose,
-  title,
+  title = "Kontaktieren Sie uns",
+  size = "lg",
   children,
-  size = "md",
 }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
-  const previousActiveElement = useRef<HTMLElement | null>(null);
 
+  // Blochează scroll-ul body când modalul e deschis
   useEffect(() => {
     if (isOpen) {
-      previousActiveElement.current = document.activeElement as HTMLElement;
+      const prev = document.body.style.overflow;
       document.body.style.overflow = "hidden";
-
-      // Focus primul element focusable din modal
-      setTimeout(() => {
-        const focusableElements = modalRef.current?.querySelectorAll(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        );
-        if (focusableElements && focusableElements.length > 0) {
-          (focusableElements[0] as HTMLElement).focus();
-        }
-      }, 100);
-    } else {
-      document.body.style.overflow = "unset";
-      previousActiveElement.current?.focus();
+      return () => {
+        document.body.style.overflow = prev;
+      };
     }
-
-    return () => {
-      document.body.style.overflow = "unset";
-    };
   }, [isOpen]);
 
+  // Închide pe Escape
   useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        onClose();
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener("keydown", handleEscape);
-    }
-
-    return () => {
-      document.removeEventListener("keydown", handleEscape);
-    };
+    const onEsc = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    if (isOpen) document.addEventListener("keydown", onEsc);
+    return () => document.removeEventListener("keydown", onEsc);
   }, [isOpen, onClose]);
 
-  const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (event.target === event.currentTarget) {
-      onClose();
-    }
+  // Închide la click pe backdrop
+  const onBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) onClose();
   };
 
   if (!isOpen) return null;
 
+  // Lățime în funcție de size (fără să-ți cer update în CSS)
+  const maxWidth =
+    size === "sm" ? 520 : size === "md" ? 680 : size === "lg" ? 820 : 1040;
+
   return (
     <div
       className={styles.modalOverlay}
-      onClick={handleBackdropClick}
+      onClick={onBackdropClick}
       role="dialog"
       aria-modal="true"
-      aria-labelledby={title ? "modal-title" : undefined}
+      aria-label={title}
     >
-      <div ref={modalRef} className={`${styles.modal} ${styles[size]}`}>
+      <div
+        ref={modalRef}
+        className={styles.modal}
+        style={{ maxWidth, width: "100%" }}
+      >
         {/* Header */}
         <div className={styles.modalHeader}>
-          {title && (
-            <h2 id="modal-title" className={styles.modalTitle}>
-              {title}
-            </h2>
-          )}
+          <div className={styles.headerContent}>
+            <h2 className={styles.modalTitle}>{title}</h2>
+            {/* poți adăuga/substitui subtitlul dacă vrei */}
+          </div>
+
           <button
             onClick={onClose}
             className={styles.closeButton}
-            aria-label="Modal schließen"
+            aria-label="Popup schließen"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
               <path
@@ -102,19 +91,15 @@ export default function Modal({
           </button>
         </div>
 
-        {/* Content */}
-        <div className={styles.modalContent}>{children}</div>
+        {/* Body – conținutul din props.children (ex. <ContactForm />) */}
+        <div className={styles.modalBody}>
+          {children ?? (
+            <p style={{ margin: 0 }}>
+              (Aici poți plasa un formular sau conținutul dorit.)
+            </p>
+          )}
+        </div>
       </div>
-
-      {/* Background Elements */}
-      <div className={styles.backgroundElements}>
-        <div className={styles.backgroundGrid} />
-        <div className={styles.cornerAccent} />
-        <div className={styles.cornerAccent} />
-      </div>
-
-      {/* Red Accent Line */}
-      <div className={styles.redAccent} />
     </div>
   );
 }

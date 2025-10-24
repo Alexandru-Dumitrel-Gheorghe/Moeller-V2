@@ -29,9 +29,9 @@ export default function Header() {
   const closeModal = () => setIsModalOpen(false);
 
   const menuItems = [
-    { name: "Küchen", href: "#kuechen" },
+    { name: "Küchen", href: "/studiokuechen" },
     { name: "Referenzen", href: "/referenzen" },
-    { name: "Qualität", href: "#qualitat" },
+    { name: "Über Uns", href: "/ueber-uns" },
     { name: "Ehrlichkeit", href: "#ehrlichkeit" },
     { name: "Showroom", href: "#showroom" },
     // Notă: Kontakt va deschide modalul (interceptăm click-ul)
@@ -168,7 +168,6 @@ export default function Header() {
         />
       </div>
 
-      {/* 🔴 Modal global în Header – apare la „Termin vereinbaren” sau „Kontakt” */}
       <Modal
         isOpen={isModalOpen}
         onClose={closeModal}
