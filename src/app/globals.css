@@ -11,7 +11,11 @@
   margin: 0;
   padding: 0;
 }
-
+:root {
+  --logo-radius: 8px;
+  --logo-border-thickness: 2px;
+  --logo-progress-color: #d51920;
+}
 html,
 body {
   height: 100%;
