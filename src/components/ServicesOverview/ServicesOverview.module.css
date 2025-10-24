@@ -382,6 +382,7 @@
 
   .title {
     font-size: clamp(1.6rem, 7vw, 2rem);
+    margin-top: 2rem;
   }
 
   .titleMain {

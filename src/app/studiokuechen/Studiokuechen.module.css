@@ -1,14 +1,23 @@
-.section {
+.page {
   position: relative;
-  padding: clamp(80px, 10vh, 120px) clamp(24px, 4vw, 80px);
+  padding: clamp(80px, 10vh, 120px) 0;
   background: var(--bg-light);
   color: var(--text-color);
   font-family: var(--font-primary);
   isolation: isolate;
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: 5rem;
 }
 
-/* Background Elements matching your design */
+.page.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Background Elements */
 .backgroundElements {
   position: absolute;
   inset: 0;
@@ -48,38 +57,26 @@
   border-top: none;
 }
 
-.redAccent {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(
-    90deg,
-    var(--red-dark) 0%,
-    var(--red-medium) 50%,
-    var(--red-dark) 100%
-  );
-  z-index: 2;
-}
-
 .container {
   position: relative;
   z-index: 1;
   max-width: 1400px;
   margin: 0 auto;
+  padding: 0 clamp(24px, 4vw, 80px);
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: clamp(40px, 6vw, 80px);
-  align-items: start;
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: clamp(50px, 6vh, 80px);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease 0.3s;
 }
 
-/* LEFT - Text Content */
-.copy {
-  max-width: 680px;
+.page.visible .header {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .title {
@@ -88,7 +85,7 @@
   line-height: 1.1;
   letter-spacing: -0.02em;
   color: var(--text-color);
-  margin: 0 0 clamp(20px, 3vh, 30px) 0;
+  margin: 0 0 clamp(16px, 2vh, 24px) 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -113,7 +110,7 @@
   position: relative;
   width: min(160px, 30vw);
   height: 3px;
-  margin-bottom: clamp(30px, 4vh, 40px);
+  margin: 0 auto clamp(30px, 4vh, 40px) auto;
 }
 
 .underlineMain {
@@ -131,33 +128,114 @@
   background: var(--red-medium);
 }
 
-.lead {
+.descriptionWrapper {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.description {
   font-size: clamp(1.1rem, 1.8vw, 1.3rem);
-  font-weight: 500;
+  font-weight: 300;
   line-height: 1.6;
   color: var(--text-color);
-  margin: 0 0 clamp(24px, 3vh, 32px) 0;
+  margin: 0;
   border-left: 3px solid var(--red-medium);
   padding-left: 20px;
   background: linear-gradient(90deg, rgba(213, 25, 32, 0.03), transparent 80%);
+  margin-bottom: 4rem;
 }
 
-.paragraphs {
+/* Gallery Container */
+.galleryContainer {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  overflow: hidden;
+  margin-bottom: clamp(60px, 8vh, 100px);
+}
+
+/* Info Section */
+.infoSection {
   display: flex;
   flex-direction: column;
-  gap: clamp(16px, 2vh, 20px);
-  margin-bottom: clamp(32px, 4vh, 40px);
+  gap: clamp(40px, 4vh, 60px);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease 0.5s;
 }
 
-.p {
+.page.visible .infoSection {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.infoContent {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.infoTitle {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0 0 1.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.infoDescription {
   font-size: 1.05rem;
   line-height: 1.7;
   color: var(--text-color);
+  margin: 0 0 2.5rem 0;
   font-weight: 300;
-  margin: 0;
 }
 
-/* CTA Button - Less rounded */
+/* Stats */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 40px);
+  margin-top: 2rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.statNumber {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--red-medium);
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+/* CTA */
+.ctaWrapper {
+  display: flex;
+  justify-content: center;
+}
+
 .cta {
   display: inline-flex;
   align-items: center;
@@ -166,7 +244,7 @@
   background: transparent;
   color: var(--text-color);
   border: 2px solid rgba(0, 0, 0, 0.8);
-  border-radius: 8px; /* Mai puțin rotunjit */
+  border-radius: 8px;
   font-size: clamp(0.9rem, 1.8vw, 1rem);
   font-weight: 600;
   text-decoration: none;
@@ -194,148 +272,73 @@
   transform: translateX(5px);
 }
 
-.ctaLine {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(213, 25, 32, 0.2),
-    transparent
-  );
-  transition: left 0.6s ease;
-}
-
-.cta:hover .ctaLine {
-  left: 100%;
-}
-
-/* RIGHT - Image */
-.figure {
-  margin: 0;
-  position: relative;
-}
-
-.imageWrap {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16/11;
-  border-radius: 16px;
-  overflow: hidden;
-  background: #f5f5f5;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
-  isolation: isolate;
-}
-
-.image {
-  object-fit: cover;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.imageWrap:hover .image {
-  transform: scale(1.05);
-}
-
-.imageGlow {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    60% 60% at 80% 20%,
-    rgba(213, 25, 32, 0.1),
-    transparent 60%
-  );
-  mix-blend-mode: multiply;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.imageWrap:hover .imageGlow {
-  opacity: 1;
-}
-
-.caption {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 20px 0 0 0;
-  text-align: center;
-}
-
-.person {
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  font-size: 1.1rem;
-  color: var(--text-color);
-  text-transform: uppercase;
-}
-
-.role {
-  color: var(--text-light);
-  font-size: 0.9rem;
-  font-weight: 300;
-  line-height: 1.4;
-}
-
 /* ===== RESPONSIVE DESIGN ===== */
 
 /* Tablet */
 @media (max-width: 1024px) {
-  .section {
-    padding: 70px 32px;
+  .page {
+    padding: 70px 0;
   }
 
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 50px;
+  .stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
   }
 
-  .copy {
-    max-width: none;
-    text-align: center;
-  }
-
-  .titleUnderline {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .lead {
-    text-align: left;
+  .stat {
+    padding: 1.25rem;
   }
 }
 
 /* Mobile Large */
 @media (max-width: 768px) {
-  .section {
-    padding: 60px 24px;
+  .page {
+    padding: 60px 0;
   }
 
-  .grid {
-    gap: 40px;
+  .container {
+    padding: 0 24px;
+  }
+
+  .header {
+    margin-bottom: 40px;
   }
 
   .title {
     font-size: clamp(1.8rem, 6vw, 2.2rem);
   }
 
-  .lead {
+  .description {
     font-size: 1.1rem;
     padding-left: 16px;
-    margin-bottom: 28px;
   }
 
-  .paragraphs {
-    gap: 16px;
-    margin-bottom: 32px;
+  .galleryContainer {
+    margin-bottom: 50px;
   }
 
-  .p {
+  .infoSection {
+    gap: 32px;
+  }
+
+  .infoTitle {
+    font-size: 1.4rem;
+  }
+
+  .infoDescription {
     font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: 300px;
+    margin: 2rem auto 0 auto;
+  }
+
+  .stat {
+    padding: 1.5rem;
   }
 
   .cta {
@@ -349,13 +352,16 @@
 
 /* Mobile Small */
 @media (max-width: 480px) {
-  .section {
-    padding: 50px 20px;
+  .page {
+    padding: 50px 0;
+  }
+
+  .container {
+    padding: 0 20px;
   }
 
   .title {
     font-size: clamp(1.6rem, 7vw, 2rem);
-    margin-top: 2rem;
   }
 
   .titleMain {
@@ -366,36 +372,56 @@
     font-size: 0.3em;
   }
 
-  .lead {
+  .description {
     font-size: 1rem;
     padding-left: 14px;
   }
 
-  .caption {
-    padding-top: 16px;
+  .infoTitle {
+    font-size: 1.3rem;
   }
 
-  .person {
-    font-size: 1rem;
+  .statNumber {
+    font-size: 2rem;
   }
 
-  .role {
+  .statLabel {
     font-size: 0.85rem;
+  }
+}
+
+/* Extra Small Devices */
+@media (max-width: 360px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .stats {
+    max-width: 260px;
+  }
+
+  .stat {
+    padding: 1.25rem;
   }
 }
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  .cta,
-  .image {
+  .page,
+  .header,
+  .infoSection,
+  .cta {
     transition: none;
   }
 
-  .cta:hover {
+  .page,
+  .header,
+  .infoSection {
+    opacity: 1;
     transform: none;
   }
 
-  .imageWrap:hover .image {
+  .cta:hover {
     transform: none;
   }
 }

@@ -3,10 +3,12 @@
 import styles from "./Header.module.css";
 import { FiGrid, FiX } from "react-icons/fi";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation"; // ✅ Import pentru navigare
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const router = useRouter(); // ✅ Inițializează router-ul
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -16,7 +18,7 @@ export default function Header() {
 
   const menuItems = [
     { name: "Küchen", href: "#kuechen" },
-    { name: "Referenzen", href: "#referenzen" },
+    { name: "Referenzen", href: "/referenzen" },
     { name: "Qualität", href: "#qualitat" },
     { name: "Ehrlichkeit", href: "#ehrlichkeit" },
     { name: "Showroom", href: "#showroom" },
@@ -44,7 +46,12 @@ export default function Header() {
         </button>
 
         {/* Centru: Logo */}
-        <div className={styles.logoWrap} aria-label="Küchen by Möller">
+        <div
+          className={styles.logoWrap}
+          aria-label="Küchen by Möller"
+          onClick={() => router.push("/")} // ✅ Redirecționează spre homepage
+          style={{ cursor: "pointer" }}
+        >
           <div className={styles.logoBox}>
             <div className={styles.logoImage}>
               <img
@@ -91,7 +98,7 @@ export default function Header() {
         className={`${styles.dropdownMenu} ${menuOpen ? styles.menuOpen : ""}`}
       >
         <div className={styles.menuContent}>
-          {/* Buton X în panou (vizibil deasupra overlay-ului) */}
+          {/* Buton X în panou */}
           <button
             className={styles.closeBtn}
             onClick={() => setMenuOpen(false)}
@@ -132,7 +139,7 @@ export default function Header() {
           </div>
         </div>
 
-        {/* overlay care închide meniul la click */}
+        {/* Overlay care închide meniul la click */}
         <div
           className={styles.menuOverlay}
           onClick={() => setMenuOpen(false)}

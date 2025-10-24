@@ -75,7 +75,7 @@ export default function VideoHero() {
 
           {/* CTA Buttons */}
           <div className={styles.ctaWrapper}>
-            <a href="#kollektion" className={styles.primaryCta}>
+            <a href="/studiokuechen" className={styles.primaryCta}>
               <span className={styles.ctaText}>Kollektion entdecken</span>
               <div className={styles.ctaArrow}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">

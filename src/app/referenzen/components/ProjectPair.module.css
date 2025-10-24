@@ -1,0 +1,249 @@
+.wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(10px, 1.5vw, 18px);
+  width: 100%;
+  margin: clamp(28px, 4vw, 50px) auto;
+  padding: 0 clamp(20px, 5vw, 64px);
+  max-width: 2000px;
+}
+
+.card {
+  position: relative;
+  display: block;
+  min-height: clamp(360px, 45vw, 560px);
+  background: var(--bg-darker);
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid rgba(139, 0, 0, 0.12);
+  text-decoration: none;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  border-color: rgba(139, 0, 0, 0.24);
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.img {
+  object-fit: cover;
+  filter: brightness(0.8) contrast(1.05) saturate(0.98);
+  transform: scale(1.02);
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    filter 0.3s ease;
+}
+
+.card:hover .img {
+  transform: scale(1.06);
+  filter: brightness(0.9);
+}
+
+/* Overlays pentru lizibilitate + ADN roșu subtil */
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0.15) 45%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  z-index: 1;
+}
+
+.tint {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    80% 60% at 15% 85%,
+    var(--red-glow),
+    transparent 60%
+  );
+  mix-blend-mode: screen;
+  z-index: 1;
+}
+
+/* Mic accent roșu pe marginea interioară, discret */
+.redEdge {
+  position: absolute;
+  inset: 10px 10px auto 10px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--red-dark),
+    rgba(255, 255, 255, 0.65)
+  );
+  opacity: 0.85;
+  z-index: 2;
+}
+
+/* Content jos-stânga */
+.content {
+  position: absolute;
+  left: clamp(16px, 3vw, 28px);
+  right: clamp(16px, 3vw, 28px);
+  bottom: clamp(18px, 3.2vw, 34px);
+  z-index: 2;
+  color: #fff;
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.65);
+  max-width: 85%;
+}
+
+.category {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(213, 25, 32, 0.22);
+  border: 1px solid rgba(213, 25, 32, 0.35);
+  padding: 6px 10px;
+  margin-bottom: 0.35rem;
+  backdrop-filter: blur(2px);
+  font-weight: 500;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+  letter-spacing: -0.01em;
+  margin: 0.2rem 0 0.4rem;
+  color: #fff;
+  line-height: 1.1;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.excerpt {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(0.92rem, 1.6vw, 1rem);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 48ch;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .wrap {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .card {
+    min-height: clamp(340px, 60vw, 520px);
+  }
+
+  .content {
+    max-width: 90%;
+  }
+}
+
+/* Mobile Large */
+@media (max-width: 768px) {
+  .wrap {
+    padding: 0 clamp(16px, 4vw, 32px);
+    margin: clamp(24px, 3vw, 40px) auto;
+  }
+
+  .card {
+    min-height: clamp(300px, 70vw, 450px);
+  }
+
+  .content {
+    left: clamp(14px, 2.5vw, 20px);
+    right: clamp(14px, 2.5vw, 20px);
+    bottom: clamp(16px, 2.5vw, 24px);
+  }
+
+  .title {
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+  }
+
+  .excerpt {
+    font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+  }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+  .wrap {
+    padding: 0 16px;
+    gap: 12px;
+  }
+
+  .card {
+    min-height: clamp(280px, 80vw, 400px);
+  }
+
+  .content {
+    max-width: 95%;
+  }
+
+  .category {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+  }
+
+  .title {
+    font-size: clamp(1.2rem, 5vw, 1.8rem);
+    margin: 0.1rem 0 0.3rem;
+  }
+
+  .excerpt {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+}
+
+/* Extra Small Devices */
+@media (max-width: 360px) {
+  .wrap {
+    padding: 0 12px;
+  }
+
+  .card {
+    min-height: 260px;
+  }
+
+  .content {
+    left: 12px;
+    right: 12px;
+    bottom: 14px;
+  }
+}
+
+/* Landscape Orientation */
+@media (max-height: 500px) and (orientation: landscape) {
+  .card {
+    min-height: clamp(300px, 80vh, 400px);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .img {
+    transition: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+
+  .card:hover .img {
+    transform: scale(1.02);
+  }
+}

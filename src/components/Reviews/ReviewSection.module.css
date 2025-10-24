@@ -357,6 +357,7 @@
 
   .title {
     font-size: clamp(1.8rem, 6vw, 2.2rem);
+    margin-top: 2rem;
   }
 
   .squareCta {

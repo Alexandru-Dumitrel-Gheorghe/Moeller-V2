@@ -56,7 +56,7 @@ const ReferenzenVideo: React.FC = () => {
 
           {/* Buton CTA */}
           <div className={styles.buttonWrapper}>
-            <a href="#referenzen" className={styles.ctaButton}>
+            <a href="/referenzen" className={styles.ctaButton}>
               <span className={styles.buttonText}>Mehr erfahren</span>
               <div className={styles.buttonIcon}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">

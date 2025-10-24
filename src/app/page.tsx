@@ -9,7 +9,6 @@ import CtaSection from "@/components/CtaSection/CtaSection";
 import ReviewsSection from "@/components/Reviews/Reviews";
 import FAQSection from "@/components/FAQSection/FAQSection";
 import ContactForm from "@/components/ContactForm/ContactForm";
-import Footer from "@/components/Footer/Footer";
 import DetailLoesungen from "@/components/DetailLoesungen/DetailLoesungen";
 import Leistungen from "@/components/Leistungen/Leistungen";
 import ServicesOverview from "@/components/ServicesOverview/ServicesOverview";
@@ -30,7 +29,6 @@ export default function Home() {
       <ReviewsSection />
       <FAQSection />
       <ContactForm />
-      <Footer />
     </div>
   );
 }

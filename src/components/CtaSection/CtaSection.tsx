@@ -13,7 +13,17 @@ const CtaSection: React.FC = () => {
 
       {/* Clean Content */}
       <div className={styles.content}>
-        <h2 className={styles.title}>Starten Sie Ihr Projekt mit uns</h2>
+        <div className={styles.header}>
+          <h2 className={styles.title}>
+            <span className={styles.titleMain}>STARTEN SIE IHR PROJEKT</span>
+            <span className={styles.titleSub}>Mit uns</span>
+          </h2>
+          <div className={styles.titleUnderline}>
+            <div className={styles.underlineMain} />
+            <div className={styles.underlineAccent} />
+          </div>
+        </div>
+
         <a href="#kontakt" className={styles.ctaButton}>
           <span className={styles.buttonText}>Kontakt aufnehmen</span>
           <div className={styles.buttonArrow}>
