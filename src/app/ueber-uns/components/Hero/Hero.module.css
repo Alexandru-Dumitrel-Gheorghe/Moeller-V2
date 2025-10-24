@@ -6,7 +6,7 @@
   max-height: 900px;
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* Schimbat de la center la flex-end */
+  justify-content: flex-start; /* Schimbat la flex-start pentru stânga */
   overflow: hidden;
   background: #000;
   isolation: isolate;
@@ -27,7 +27,7 @@
 
 .bgImage {
   object-fit: cover;
-  object-position: left center; /* Imaginea pe stânga, conținutul pe dreapta */
+  object-position: right center; /* Imaginea pe dreapta, conținutul pe stânga */
   filter: brightness(0.7) contrast(1.1);
   transform: scale(1.05);
   transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
@@ -42,9 +42,9 @@
   inset: 0;
   background: linear-gradient(
     to right,
-    /* Schimbat de la bottom la right */ rgba(0, 0, 0, 0.8) 0%,
-    rgba(0, 0, 0, 0.4) 40%,
-    rgba(0, 0, 0, 0.2) 100%
+    /* Gradient de la stânga la dreapta */ rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.4) 60%,
+    rgba(0, 0, 0, 0.8) 100%
   );
   z-index: 1;
 }
@@ -54,10 +54,9 @@
   inset: 0;
   background: linear-gradient(
     90deg,
-    /* Schimbat de la 135deg la 90deg */ transparent 0%,
-    rgba(139, 0, 0, 0.1) 30%,
-    rgba(139, 0, 0, 0.05) 60%,
-    transparent 100%
+    /* Gradient orizontal */ rgba(139, 0, 0, 0.05) 0%,
+    rgba(139, 0, 0, 0.1) 40%,
+    transparent 70%
   );
   z-index: 1;
   mix-blend-mode: overlay;
@@ -129,19 +128,18 @@
   transform: scaleX(1);
 }
 
-/* ===== CONTENT - Right Aligned ===== */
+/* ===== CONTENT - Left Aligned ===== */
 .content {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 600px; /* Lățime mai mică pentru conținutul din dreapta */
-  padding: 0 clamp(40px, 6vw, 120px) 0 clamp(24px, 4vw, 80px);
-  text-align: left; /* Schimbat de la center la left */
+  max-width: 600px;
+  padding: 0 clamp(24px, 4vw, 80px) 0 clamp(40px, 6vw, 120px); /* Mai mult padding în stânga */
+  text-align: left;
   opacity: 0;
-  transform: translateX(40px); /* Animație de la dreapta */
+  transform: translateX(-40px); /* Animație de la stânga */
   transition: all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
-  margin-right: 0;
-  margin-left: auto; /* Împinge conținutul spre dreapta */
+  margin-left: 0; /* Asigură că rămâne în stânga */
 }
 
 .hero.loaded .content {
@@ -195,7 +193,7 @@
   position: relative;
   width: min(160px, 30vw);
   height: 3px;
-  margin: 0 0; /* Schimbat de la auto la 0 */
+  margin: 0 0; /* Aliniat la stânga */
 }
 
 .underlineMain {
@@ -215,10 +213,10 @@
 
 /* ===== DESCRIPTION ===== */
 .descriptionWrapper {
-  max-width: 480px; /* Lățime mai mică */
-  margin: 0 0 clamp(40px, 5vh, 60px) 0; /* Schimbat de la auto */
+  max-width: 480px;
+  margin: 0 0 clamp(40px, 5vh, 60px) 0; /* Aliniat la stânga */
   opacity: 0;
-  transform: translateX(20px);
+  transform: translateX(-20px);
   transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
 }
 
@@ -240,11 +238,11 @@
 /* ===== STATS ===== */
 .stats {
   display: flex;
-  justify-content: flex-start; /* Schimbat de la center la flex-start */
+  justify-content: flex-start; /* Aliniat la stânga */
   gap: clamp(30px, 4vw, 50px);
   margin-bottom: clamp(30px, 4vh, 40px);
   opacity: 0;
-  transform: translateX(20px);
+  transform: translateX(-20px);
   transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.8s;
 }
 
@@ -256,7 +254,7 @@
 .stat {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Schimbat de la center la flex-start */
+  align-items: flex-start; /* Aliniat la stânga */
   gap: 0.5rem;
 }
 
@@ -274,7 +272,7 @@
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  text-align: left; /* Schimbat de la center la left */
+  text-align: left;
   max-width: 120px;
   line-height: 1.3;
 }
@@ -285,7 +283,7 @@
   flex-direction: column;
   gap: 1rem;
   opacity: 0;
-  transform: translateX(20px);
+  transform: translateX(-20px);
   transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1s;
 }
 
@@ -303,6 +301,7 @@
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
+  max-width: 350px;
 }
 
 .infoIcon {
@@ -392,14 +391,15 @@
   .hero {
     height: 80vh;
     min-height: 600px;
-    justify-content: center; /* Pe tabletă revenim la centrare */
+    justify-content: center; /* Pe tabletă centrăm conținutul */
   }
 
   .content {
     max-width: 500px;
     margin: 0 auto;
     text-align: center;
-    transform: translateY(40px); /* Animație de jos */
+    transform: translateY(40px);
+    padding: 0 24px;
   }
 
   .hero.loaded .content {
@@ -443,7 +443,7 @@
   }
 
   .content {
-    padding: 0 24px;
+    padding: 0 20px;
     max-width: none;
   }
 
@@ -486,7 +486,7 @@
   }
 
   .content {
-    padding: 0 20px;
+    padding: 0 16px;
   }
 
   .title {
@@ -552,6 +552,7 @@
 
   .content {
     max-width: 650px;
+    padding-left: clamp(60px, 8vw, 160px);
   }
 }
 
@@ -606,7 +607,7 @@
   }
 
   .additionalInfo {
-    display: none; /* Ascundem info suplimentare pe landscape */
+    display: none;
   }
 
   .scrollIndicator {

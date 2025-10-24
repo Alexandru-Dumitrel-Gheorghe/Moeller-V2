@@ -42,7 +42,7 @@ export default function UeberUnsHero() {
       {/* Red Accent Line */}
       <div className={styles.redAccent} />
 
-      {/* Content - Aligned to Right */}
+      {/* Content - Aligned to Left */}
       <div className={styles.content}>
         <div className={styles.contentInner}>
           {/* Header */}
