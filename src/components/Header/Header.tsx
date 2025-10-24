@@ -248,10 +248,7 @@ export default function Header() {
         isOpen={isModalOpen}
         onClose={closeModal}
         title="Termin vereinbaren"
-        size="lg"
-      >
-        <ContactForm />
-      </Modal>
+      ></Modal>
     </header>
   );
 }

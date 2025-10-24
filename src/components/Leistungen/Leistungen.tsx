@@ -61,21 +61,6 @@ const KITCHEN_TYPES = [
 export default function Leistungen() {
   return (
     <>
-      {/* Sticky Subnavigation */}
-      <nav className={styles.subNav}>
-        <div className={styles.subNavContainer}>
-          <a href="#werte" className={styles.subNavLink}>
-            Werte
-          </a>
-          <a href="#stile" className={styles.subNavLink}>
-            Stile
-          </a>
-          <a href="#beratung" className={styles.subNavLink}>
-            Beratung
-          </a>
-        </div>
-      </nav>
-
       <section className={styles.section} aria-labelledby="leistungen-title">
         {/* Simplified Background */}
         <div className={styles.backgroundElements}>

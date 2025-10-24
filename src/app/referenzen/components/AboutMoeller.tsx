@@ -4,7 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import styles from "./AboutMoeller.module.css";
 
 export default function AboutMoeller() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -18,176 +18,170 @@ export default function AboutMoeller() {
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
-    };
+    return () => observer.disconnect();
   }, []);
+
+  const features = [
+    {
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+        </svg>
+      ),
+      title: "Persönliche Beratung",
+      description:
+        "Von der ersten Idee bis zur finalen Umsetzung an Ihrer Seite.",
+    },
+    {
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+          <path d="M14 2v6h6" stroke="currentColor" strokeWidth="2" />
+        </svg>
+      ),
+      title: "Hochwertige Materialien",
+      description:
+        "Oberflächen und Geräte von LEICHT, Schüller, Gaggenau und BORA.",
+    },
+    {
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+        </svg>
+      ),
+      title: "Individuelle Planung",
+      description: "Jede Küche ist so einzigartig wie ihre Besitzer.",
+    },
+  ];
+
+  const references = [
+    {
+      client: "Hartkorn Gewürze",
+      project: "Mitarbeiter- & Testküchen inklusive Ess- & Sitzbereichen",
+    },
+    {
+      client: "Familie Schulte",
+      project: "Komplette Neuplanung des Küchenbereichs",
+    },
+  ];
 
   return (
     <section
       ref={sectionRef}
       id="about-moeller"
-      className={`${styles.wrap} ${isVisible ? styles.visible : ""}`}
+      className={`${styles.section} ${isVisible ? styles.visible : ""}`}
       aria-label="Über Möller Küchen"
     >
       {/* Background Elements */}
-      <div className={styles.backgroundElements}>
-        <div className={styles.backgroundGrid} />
-        <div className={styles.cornerAccent} />
-        <div className={styles.cornerAccent} />
+      <div className={styles.background}>
+        <div className={styles.gridPattern} />
+        <div className={styles.gradientOverlay} />
       </div>
-
-      {/* Red Accent Line */}
-      <div className={styles.redAccent} />
 
       <div className={styles.container}>
         {/* Header */}
         <div className={styles.header}>
-          <h2 className={styles.title}>
-            <span className={styles.titleMain}>ÜBER MÖLLER KÜCHEN</span>
-            <span className={styles.titleSub}>Unsere Philosophie</span>
-          </h2>
-          <div className={styles.titleUnderline}>
-            <div className={styles.underlineMain} />
-            <div className={styles.underlineAccent} />
+          <div className={styles.titleWrapper}>
+            <h2 className={styles.title}>
+              <span className={styles.titleMain}>Über Möller Küchen</span>
+              <span className={styles.titleSub}>Unsere Philosophie</span>
+            </h2>
+            <div className={styles.titleLine} />
           </div>
         </div>
 
-        {/* Grid */}
-        <div className={styles.grid}>
-          {/* Left Column */}
-          <article className={styles.col}>
-            <div className={styles.colContent}>
-              <h3 className={styles.colTitle}>
+        {/* Content Grid */}
+        <div className={styles.content}>
+          {/* Left Column - Philosophy */}
+          <div className={styles.column}>
+            <div className={styles.contentCard}>
+              <h3 className={styles.columnTitle}>
                 Individuelles Raumdesign nach Maß
               </h3>
 
-              <p className={styles.colText}>
+              <p className={styles.columnText}>
                 Ob moderne Designküche, gemütliche Wohnküche oder funktionale
                 Familienküche – bei <strong>MÖLLER KÜCHEN</strong> planen wir
                 bis ins kleinste Detail und entwickeln mit Ihnen Lösungen, die
                 langlebig und alltagstauglich sind.
               </p>
 
-              <div className={styles.highlight}>
-                <p className={styles.highlightText}>
-                  „Wir denken die Küche als Lebensraum – mit Wärme, Licht und
-                  intelligenten Funktionen.“
+              {/* Quote */}
+              <div className={styles.quote}>
+                <div className={styles.quoteIcon}>"</div>
+                <p className={styles.quoteText}>
+                  Wir denken die Küche als Lebensraum – mit Wärme, Licht und
+                  intelligenten Funktionen.
                 </p>
-                <cite className={styles.highlightCite}>— Team MÖLLER</cite>
+                <cite className={styles.quoteAuthor}>— Team MÖLLER</cite>
               </div>
 
+              {/* References */}
               <div className={styles.references}>
                 <h4 className={styles.referencesTitle}>
                   Ausgewählte Referenzen
                 </h4>
-                <div className={styles.referenceItem}>
-                  <strong className={styles.referenceStrong}>
-                    Hartkorn Gewürze:
-                  </strong>
-                  <span>
-                    Mitarbeiter- & Testküchen inklusive Ess- & Sitzbereichen
-                  </span>
-                </div>
-                <div className={styles.referenceItem}>
-                  <strong className={styles.referenceStrong}>
-                    Familie Schulte:
-                  </strong>
-                  <span>Komplette Neuplanung des Küchenbereichs</span>
+                <div className={styles.referencesList}>
+                  {references.map((ref, index) => (
+                    <div key={index} className={styles.referenceItem}>
+                      <div className={styles.referenceClient}>{ref.client}</div>
+                      <div className={styles.referenceProject}>
+                        {ref.project}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
-          </article>
+          </div>
 
-          {/* Right Column */}
-          <article className={styles.col}>
-            <div className={styles.colContent}>
-              <h3 className={styles.colTitle}>Warum MÖLLER KÜCHEN?</h3>
+          {/* Right Column - Features */}
+          <div className={styles.column}>
+            <div className={styles.contentCard}>
+              <h3 className={styles.columnTitle}>Warum MÖLLER KÜCHEN?</h3>
 
-              <p className={styles.colText}>
+              <p className={styles.columnText}>
                 Wir realisieren anspruchsvolle Projekte mit höchstem
                 Qualitätsanspruch und enger Abstimmung.
               </p>
 
+              {/* Features */}
               <div className={styles.features}>
-                <div className={styles.feature}>
-                  <div className={styles.featureIcon}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                {features.map((feature, index) => (
+                  <div key={index} className={styles.feature}>
+                    <div className={styles.featureIcon}>{feature.icon}</div>
+                    <div className={styles.featureContent}>
+                      <h4 className={styles.featureTitle}>{feature.title}</h4>
+                      <p className={styles.featureDescription}>
+                        {feature.description}
+                      </p>
+                    </div>
                   </div>
-                  <div className={styles.featureContent}>
-                    <strong className={styles.featureTitle}>
-                      Persönliche Beratung
-                    </strong>
-                    <p className={styles.featureText}>
-                      Von der ersten Idee bis zur finalen Umsetzung an Ihrer
-                      Seite.
-                    </p>
-                  </div>
-                </div>
-
-                <div className={styles.feature}>
-                  <div className={styles.featureIcon}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4M4 6v12c0 1.1.9 2 2 2h14v-4"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </div>
-                  <div className={styles.featureContent}>
-                    <strong className={styles.featureTitle}>
-                      Hochwertige Materialien
-                    </strong>
-                    <p className={styles.featureText}>
-                      Oberflächen und Geräte von LEICHT, Schüller, Gaggenau und
-                      BORA.
-                    </p>
-                  </div>
-                </div>
-
-                <div className={styles.feature}>
-                  <div className={styles.featureIcon}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </div>
-                  <div className={styles.featureContent}>
-                    <strong className={styles.featureTitle}>
-                      Individuelle Planung
-                    </strong>
-                    <p className={styles.featureText}>
-                      Jede Küche ist so einzigartig wie ihre Besitzer.
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
 
-              <div className={styles.extraInfo}>
-                <h4 className={styles.extraTitle}>Mehr als nur Küchen</h4>
-                <p className={styles.extraText}>
+              {/* Additional Info */}
+              <div className={styles.additionalInfo}>
+                <h4 className={styles.additionalTitle}>Mehr als nur Küchen</h4>
+                <p className={styles.additionalText}>
                   Auf Wunsch planen wir ganzheitliche Raumkonzepte – von der
                   Küche bis zu individuellen Wohnmöbeln und Beleuchtung.
                 </p>
               </div>
             </div>
-          </article>
+          </div>
         </div>
       </div>
     </section>

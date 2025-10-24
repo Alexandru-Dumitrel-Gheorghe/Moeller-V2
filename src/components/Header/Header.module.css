@@ -144,12 +144,6 @@
   background: rgba(255, 255, 255, 0.02);
 }
 
-.logoBox:hover {
-  border-color: #fff;
-  transform: translateY(-1px);
-  box-shadow: 0 8px 30px rgba(213, 25, 32, 0.2);
-}
-
 /* Logo Image */
 .logoImage {
   width: 32px;
@@ -180,15 +174,6 @@
 /* 🔸 scoatem și filtrul de hover, păstrăm doar efectul vizual ușor dacă vrei */
 .logoBox:hover .logoImage img {
   transform: scale(1.05);
-}
-
-/* 🔸 scoatem și filtrul de hover, păstrăm doar efectul vizual ușor dacă vrei */
-.logoBox:hover .logoImage img {
-  transform: scale(1.05);
-}
-
-.logoBox:hover .logoImage img {
-  filter: brightness(0) invert(0.8) sepia(1) saturate(5) hue-rotate(340deg);
 }
 
 /* Logo Text Content */
@@ -241,12 +226,6 @@
   transition: all 0.3s ease;
 }
 
-.logoBox:hover .logoAccent {
-  border-color: #fff;
-  width: 24px;
-  height: 24px;
-}
-
 .logoGlow {
   position: absolute;
   inset: 0;
@@ -258,10 +237,6 @@
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: -1;
-}
-
-.logoBox:hover .logoGlow {
-  opacity: 1;
 }
 
 /* ===== CTA BUTTON ===== */

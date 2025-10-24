@@ -16,6 +16,18 @@
   --logo-border-thickness: 2px;
   --logo-progress-color: #d51920;
 }
+
+/* ===== Light Theme for AboutMoeller ===== */
+:root {
+  --surface: #ffffff;
+  --background: #fafafa;
+  --border: #e9e9e9;
+  --border-light: #f0f0f0;
+  --text: #1a1a1a;
+  --muted: #5a5a5a;
+  --accent: #d51920;
+}
+
 html,
 body {
   height: 100%;
@@ -209,4 +221,327 @@ body::before {
   /* deja ai roșurile + bg-urile; adaugăm gutter & container */
   --page-gutter: clamp(8px, 4vw, 8px);
   --container: 1400px;
+}
+/* ------------------------------
+   🎨 CUSTOM SCROLLBAR
+------------------------------ */
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--red-medium) rgba(139, 0, 0, 0.1);
+}
+
+/* Webkit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(139, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track:hover {
+  background: rgba(139, 0, 0, 0.08);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--red-medium), var(--red-light));
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--red-light), var(--red-dark));
+  transform: scale(1.1);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(135deg, var(--red-dark), var(--red-medium));
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Scrollbar specific pentru modale și elemente mici */
+.modal::-webkit-scrollbar,
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal::-webkit-scrollbar-thumb,
+.sidebar::-webkit-scrollbar-thumb {
+  background: var(--red-medium);
+}
+
+/* Scrollbar pentru elemente cu fundal întunecat */
+.dark-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dark-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--red-light), var(--red-medium));
+  border: none;
+}
+
+/* Scrollbar smooth animation */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar but keep functionality */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+/* ------------------------------
+   🎯 SCROLLBAR VARIATIONS
+------------------------------ */
+
+/* Subtle scrollbar */
+.scrollbar-subtle::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-subtle::-webkit-scrollbar-thumb {
+  background: rgba(139, 0, 0, 0.3);
+  border-radius: 3px;
+}
+
+.scrollbar-subtle::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 0, 0, 0.5);
+}
+
+/* Bold scrollbar */
+.scrollbar-bold::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scrollbar-bold::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--red-dark), var(--red-medium));
+  border-radius: 5px;
+  border: 2px solid var(--bg-light);
+}
+
+/* Minimal scrollbar */
+.scrollbar-minimal::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-minimal::-webkit-scrollbar-thumb {
+  background: var(--red-medium);
+  border-radius: 2px;
+}
+
+/* ------------------------------
+   📱 RESPONSIVE SCROLLBAR
+------------------------------ */
+
+@media (max-width: 768px) {
+  /* Scrollbar mai subțire pe mobile */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  .modal::-webkit-scrollbar,
+  .sidebar::-webkit-scrollbar {
+    width: 3px;
+  }
+}
+
+/* ------------------------------
+   ✨ SCROLLBAR ANIMATIONS
+------------------------------ */
+
+@keyframes scrollbarPulse {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.scrollbar-animated::-webkit-scrollbar-thumb {
+  animation: scrollbarPulse 2s ease-in-out infinite;
+}
+
+/* ------------------------------
+   🖼️ SPECIFIC ELEMENT SCROLLBARS
+------------------------------ */
+
+/* Code blocks */
+pre::-webkit-scrollbar {
+  height: 6px;
+}
+
+pre::-webkit-scrollbar-track {
+  background: rgba(139, 0, 0, 0.05);
+}
+
+pre::-webkit-scrollbar-thumb {
+  background: var(--red-medium);
+  border-radius: 3px;
+}
+
+/* Tables */
+table::-webkit-scrollbar {
+  height: 6px;
+}
+
+/* Textareas */
+textarea::-webkit-scrollbar {
+  width: 6px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background: rgba(139, 0, 0, 0.4);
+  border-radius: 3px;
+}
+
+/* ------------------------------
+   🌙 DARK MODE SCROLLBAR
+------------------------------ */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --scrollbar-track: rgba(255, 255, 255, 0.05);
+    --scrollbar-thumb: var(--red-medium);
+    --scrollbar-thumb-hover: var(--red-light);
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+  }
+}
+
+/* ------------------------------
+   🚀 PERFORMANCE OPTIMIZATIONS
+------------------------------ */
+
+.scrollbar-optimized {
+  /* Hardware acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  ::-webkit-scrollbar-thumb {
+    transition: none;
+    animation: none;
+  }
+
+  .scrollbar-animated::-webkit-scrollbar-thumb {
+    animation: none;
+  }
+}
+
+/* ------------------------------
+   🎪 CUSTOM SCROLLBAR UTILITY CLASSES
+------------------------------ */
+
+.scrollbar-red {
+  scrollbar-color: var(--red-medium) rgba(139, 0, 0, 0.1) !important;
+}
+
+.scrollbar-red::-webkit-scrollbar-thumb {
+  background: var(--red-medium) !important;
+}
+
+.scrollbar-gradient {
+  scrollbar-color: linear-gradient(135deg, var(--red-medium), var(--red-light))
+    rgba(139, 0, 0, 0.1) !important;
+}
+
+.scrollbar-gradient::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    135deg,
+    var(--red-medium),
+    var(--red-light)
+  ) !important;
+}
+
+.scrollbar-hidden {
+  scrollbar-width: none !important;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* ------------------------------
+   📦 SCROLLBAR CONTAINER MIXINS
+------------------------------ */
+
+.scroll-container {
+  overflow: auto;
+  scrollbar-gutter: stable;
+}
+
+.scroll-container-thin {
+  composes: scroll-container;
+  scrollbar-width: thin;
+}
+
+.scroll-container-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* ------------------------------
+   🎨 SCROLLBAR COLOR VARIABLES
+------------------------------ */
+
+:root {
+  --scrollbar-width: 8px;
+  --scrollbar-width-thin: 6px;
+  --scrollbar-width-mobile: 4px;
+  --scrollbar-border-radius: 4px;
+  --scrollbar-track-color: rgba(139, 0, 0, 0.05);
+  --scrollbar-thumb-color: var(--red-medium);
+  --scrollbar-thumb-hover: var(--red-light);
+  --scrollbar-thumb-active: var(--red-dark);
+}
+
+/* Update existing scrollbar styles with variables */
+::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+  height: var(--scrollbar-width);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-color);
+  border-radius: var(--scrollbar-border-radius);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-color);
+  border-radius: var(--scrollbar-border-radius);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--scrollbar-thumb-active);
 }
