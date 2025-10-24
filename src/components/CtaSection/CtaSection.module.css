@@ -1,0 +1,178 @@
+.ctaSection {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  min-height: 400px;
+  max-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ==== IMAGINE DIN PROIECT ==== */
+.backgroundImage {
+  position: absolute;
+  inset: 0;
+  background-image: url("/images/Hero-gg1.png"); /* 🖼️ imaginea ta locală */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.5) contrast(1) saturate(0.5);
+  transition: transform 10s ease;
+}
+
+.ctaSection:hover .backgroundImage {
+  transform: scale(1.05);
+}
+
+/* Overlay cu gradient pentru lizibilitate */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(0, 0, 0, 0.75) 100%
+    ),
+    radial-gradient(
+      circle at 70% 30%,
+      rgba(213, 25, 32, 0.25) 0%,
+      transparent 70%
+    );
+  z-index: 1;
+}
+
+/* ==== CONȚINUT ==== */
+.content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  backdrop-filter: blur(6px);
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Titlu principal */
+.title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 0 8px rgba(255, 255, 255, 0.2);
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* ==== BUTON CTA ==== */
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 2.8rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.ctaButton:hover {
+  background: rgba(213, 25, 32, 0.2);
+  border-color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px rgba(213, 25, 32, 0.35);
+}
+
+.ctaLine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.ctaButton:hover .ctaLine {
+  left: 100%;
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 1024px) {
+  .ctaSection {
+    height: 50vh;
+    min-height: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ctaSection {
+    height: 40vh;
+    min-height: 300px;
+  }
+
+  .content {
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .ctaButton {
+    padding: 0.9rem 2.2rem;
+    font-size: 0.9rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ctaSection {
+    height: 35vh;
+    min-height: 260px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .ctaButton {
+    padding: 0.8rem 1.8rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backgroundImage,
+  .ctaButton,
+  .ctaLine {
+    transition: none;
+  }
+  .ctaButton:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,609 @@
+/* Folosește variabilele din globals.css */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 80px;
+  padding: 0 clamp(20px, 4vw, 40px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  /* Background elegant cu blur */
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(139, 0, 0, 0.15);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header.scrolled {
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border-bottom-color: rgba(139, 0, 0, 0.25);
+  box-shadow: 0 8px 32px rgba(139, 0, 0, 0.1);
+}
+
+/* Header Background Elements */
+.headerBackground {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 0, 0, 0.03) 0%,
+    transparent 50%,
+    rgba(139, 0, 0, 0.02) 100%
+  );
+  z-index: -1;
+}
+
+.redAccent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--red-dark) 0%,
+    var(--red-medium) 50%,
+    var(--red-dark) 100%
+  );
+  opacity: 0.8;
+}
+
+/* ===== LAYOUT ===== */
+.headerContent {
+  position: relative; /* pentru centrul absolut al logo-ului */
+  width: 100%;
+  display: grid;
+  grid-template-columns: 44px 1fr max-content; /* <-- fix: a 3-a col pe dim. conținutului */
+  align-items: center;
+  gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+/* ===== MENU ICON ===== */
+.menuIcon {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: #fff;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.menuHover {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(213, 25, 32, 0.1) 0%,
+    transparent 50%,
+    rgba(213, 25, 32, 0.05) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.menuIcon:hover {
+  border-color: var(--red-medium);
+  color: var(--red-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(213, 25, 32, 0.15);
+}
+
+.menuIcon:hover .menuHover {
+  opacity: 1;
+}
+
+/* ===== LOGO — pe mijloc absolut ===== */
+.logoWrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3; /* peste CTA */
+}
+
+.logoBox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 28px 12px 20px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  text-align: left;
+  line-height: 1;
+  isolation: isolate;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.logoBox:hover {
+  border-color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 30px rgba(213, 25, 32, 0.2);
+}
+
+/* Logo Image */
+.logoImage {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+/* Logo Image */
+.logoImage {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.logoImage img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  /* 🔸 eliminăm filtrul care făcea logo-ul alb */
+  filter: none;
+  transition: transform 0.3s ease;
+}
+
+/* 🔸 scoatem și filtrul de hover, păstrăm doar efectul vizual ușor dacă vrei */
+.logoBox:hover .logoImage img {
+  transform: scale(1.05);
+}
+
+/* 🔸 scoatem și filtrul de hover, păstrăm doar efectul vizual ușor dacă vrei */
+.logoBox:hover .logoImage img {
+  transform: scale(1.05);
+}
+
+.logoBox:hover .logoImage img {
+  filter: brightness(0) invert(0.8) sepia(1) saturate(5) hue-rotate(340deg);
+}
+
+/* Logo Text Content */
+.logoTextContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.logoText {
+  font-family: var(--font-primary);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #fff;
+  transition: color 0.3s ease;
+  line-height: 1;
+}
+
+.logoSub {
+  font-family: var(--font-primary);
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--red-light);
+  transition: color 0.3s ease;
+  line-height: 1;
+}
+
+.logoBox:hover .logoText {
+  color: var(--red-light);
+}
+.logoBox:hover .logoSub {
+  color: #fff;
+}
+
+/* Logo Accent */
+.logoAccent {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 20px;
+  height: 20px;
+  border-bottom: 2px solid var(--red-light);
+  border-right: 2px solid var(--red-light);
+  border-bottom-right-radius: 6px;
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+
+.logoBox:hover .logoAccent {
+  border-color: #fff;
+  width: 24px;
+  height: 24px;
+}
+
+.logoGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(213, 25, 32, 0.1) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.logoBox:hover .logoGlow {
+  opacity: 1;
+}
+
+/* ===== CTA BUTTON ===== */
+.cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border-radius: 50px;
+  text-transform: uppercase;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  background: var(--red-dark);
+  color: #fff;
+  border: 1px solid rgba(213, 25, 32, 0.3);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 25px rgba(213, 25, 32, 0.25);
+
+  /* FIX: stă în dreapta și nu se mai întinde */
+  justify-self: end;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.ctaHover {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ctaLine {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--red-light);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.cta:hover {
+  background: var(--red-medium);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(213, 25, 32, 0.35);
+  border-color: rgba(213, 25, 32, 0.5);
+}
+
+.cta:hover .ctaHover {
+  opacity: 1;
+}
+.cta:hover .ctaLine {
+  transform: scaleX(1);
+}
+
+.ctaText {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== DROPDOWN MENU ===== */
+.dropdownMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dropdownMenu.menuOpen {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Overlay sub panou */
+.menuOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 1; /* sub .menuContent */
+}
+
+/* Panoul din stânga deasupra overlay-ului */
+.menuContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(30px);
+  border-right: 1px solid rgba(213, 25, 32, 0.2);
+  padding: 100px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2; /* peste overlay */
+}
+
+.dropdownMenu.menuOpen .menuContent {
+  transform: translateX(0);
+}
+
+.menuNav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: menuItemSlide 0.4s ease forwards;
+}
+
+.menuItem:hover {
+  background: rgba(213, 25, 32, 0.1);
+  color: #fff;
+  transform: translateX(8px);
+}
+
+.menuNumber {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--red-medium);
+  min-width: 24px;
+}
+.menuText {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  flex: 1;
+}
+
+.menuLine {
+  width: 0;
+  height: 2px;
+  background: var(--red-medium);
+  transition: width 0.3s ease;
+}
+.menuItem:hover .menuLine {
+  width: 20px;
+}
+
+@keyframes menuItemSlide {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.menuFooter {
+  margin-top: auto;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.contactTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--red-light);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.contactLink {
+  display: block;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  margin-bottom: 8px;
+  transition: color 0.3s ease;
+}
+.contactLink:hover {
+  color: #fff;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .header {
+    height: 72px;
+    padding: 0 clamp(16px, 3vw, 32px);
+  }
+  .headerContent {
+    grid-template-columns: 40px 1fr auto;
+    gap: 16px;
+  }
+
+  .logoBox {
+    padding: 10px 24px 10px 18px;
+  }
+  .logoText {
+    font-size: 20px;
+  }
+  .logoSub {
+    font-size: 9px;
+  }
+
+  .logoImage {
+    width: 28px;
+    height: 28px;
+  }
+  .logoImage img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .cta {
+    padding: 10px 20px;
+    font-size: 11px;
+  }
+
+  .menuContent {
+    max-width: 350px;
+    padding: 90px 32px 32px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .header {
+    height: 68px;
+    padding: 0 16px;
+  }
+  .headerContent {
+    grid-template-columns: 40px 1fr auto;
+    gap: 12px;
+  }
+
+  .logoBox {
+    padding: 8px 20px 8px 16px;
+    gap: 10px;
+  }
+  .logoText {
+    font-size: 18px;
+  }
+  .logoSub {
+    font-size: 8px;
+  }
+
+  .logoImage {
+    width: 24px;
+    height: 24px;
+  }
+  .logoImage img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .cta {
+    padding: 8px 16px;
+    font-size: 10px;
+    display: none;
+  } /* ascunde CTA pe mobil */
+
+  .menuContent {
+    max-width: 300px;
+    padding: 80px 24px 24px;
+  }
+  .menuItem {
+    padding: 14px 16px;
+  }
+  .menuText {
+    font-size: 16px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .header {
+    height: 64px;
+    padding: 0 12px;
+  }
+  .headerContent {
+    grid-template-columns: 40px 1fr;
+    gap: 8px;
+  }
+
+  .logoBox {
+    padding: 6px 16px 6px 12px;
+    gap: 8px;
+    border-width: 1.5px;
+  }
+  .logoText {
+    font-size: 16px;
+  }
+  .logoSub {
+    font-size: 7px;
+  }
+
+  .logoImage {
+    width: 20px;
+    height: 20px;
+  }
+  .logoImage img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .menuContent {
+    max-width: 280px;
+    padding: 70px 20px 20px;
+  }
+  .menuItem {
+    padding: 12px 14px;
+  }
+  .menuText {
+    font-size: 15px;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .menuIcon,
+  .logoBox,
+  .cta,
+  .dropdownMenu,
+  .menuContent,
+  .menuItem {
+    transition: none;
+    animation: none;
+  }
+  .menuItem {
+    opacity: 1;
+    transform: none;
+  }
+}

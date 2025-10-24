@@ -1,0 +1,445 @@
+.section {
+  position: relative;
+  padding: clamp(72px, 10vh, 120px) clamp(24px, 6vw, 120px);
+  background: var(--bg-light);
+  color: var(--text-color);
+  font-family: var(--font-primary);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Background */
+.backgroundElements {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.backgroundGrid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(var(--red-subtle) 1px, transparent 1px),
+    linear-gradient(90deg, var(--red-subtle) 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: 0.08;
+}
+.cornerAccent {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 1px solid var(--red-subtle);
+  pointer-events: none;
+  opacity: 0.12;
+}
+.cornerAccent:nth-child(2) {
+  top: -100px;
+  left: -100px;
+  border-right: none;
+  border-bottom: none;
+}
+.cornerAccent:nth-child(3) {
+  bottom: -100px;
+  right: -100px;
+  border-left: none;
+  border-top: none;
+}
+
+.redAccent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--red-dark) 0%,
+    var(--red-medium) 50%,
+    var(--red-dark) 100%
+  );
+  z-index: 2;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: clamp(40px, 7vh, 72px);
+}
+.title {
+  font-size: clamp(2.2rem, 6vw, 3.2rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-color);
+  margin: 0 0 clamp(16px, 2.5vh, 28px) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 3rem;
+}
+.titleMain {
+  font-weight: 800;
+  font-size: 1.15em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.titleSub {
+  font-size: 0.42em;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+}
+.titleUnderline {
+  position: relative;
+  width: min(140px, 38vw);
+  height: 3px;
+  margin: 0 auto;
+}
+.underlineMain {
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.8);
+}
+.underlineAccent {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 50px;
+  height: 1px;
+  background: var(--red-medium);
+}
+
+/* layout existent */
+.reviewContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 3vw, 28px);
+  margin-bottom: clamp(28px, 6vh, 32px);
+}
+
+/* butoanele standard */
+.navButton {
+  background: #fff;
+  border: 2px solid rgba(0, 0, 0, 0.18);
+  color: var(--text-color);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+.navButton:hover {
+  border-color: var(--red-medium);
+  color: var(--red-medium);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(213, 25, 32, 0.14);
+}
+
+/* pe desktop/tablet: arătăm butoanele în stânga/dreapta cardului */
+.navSide {
+  display: inline-grid;
+}
+
+/* rândul pentru mobil (două butoane alăturate) */
+.navRowMobile {
+  display: none; /* ascuns by default (desktop) */
+  justify-content: center;
+  gap: 14px;
+  margin: 8px 0 16px;
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 768px) {
+  /* containerul principal devine coloană, dar ascundem săgețile laterale */
+  .reviewContainer {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .navSide {
+    display: none;
+  }
+
+  /* afișăm bara cu două butoane pe un rând */
+  .navRowMobile {
+    display: flex;
+  }
+
+  /* card full width, padding mai mic */
+  .reviewCard {
+    order: 1;
+    width: 100%;
+    padding: 24px 18px;
+    border-radius: 16px;
+  }
+}
+
+/* Card */
+.reviewCard {
+  flex: 1;
+  max-width: 640px;
+  background: #fff;
+  padding: clamp(28px, 4.5vh, 48px) clamp(22px, 4vw, 40px);
+  border-radius: 18px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  text-align: center;
+  touch-action: pan-y;
+}
+.reviewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+.rating {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.star {
+  color: #ffd36a;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.date {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.reviewText {
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--text-color);
+  margin: 0 0 28px 0;
+  font-style: italic;
+  position: relative;
+  padding: 0 4px; /* previne “lipirea” de margini pe ecrane mici */
+  word-break: break-word;
+}
+.reviewText::before,
+.reviewText::after {
+  content: '"';
+  font-size: clamp(2.2rem, 6vw, 3.2rem);
+  color: var(--red-subtle);
+  position: absolute;
+  opacity: 0.28;
+  line-height: 1;
+  pointer-events: none;
+}
+.reviewText::before {
+  top: -10px;
+  left: -6px;
+}
+.reviewText::after {
+  bottom: -18px;
+  right: -6px;
+}
+
+.reviewFooter {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 18px;
+}
+.author {
+  text-align: center;
+}
+.name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin: 0 0 4px 0;
+}
+.location {
+  font-size: 0.96rem;
+  color: var(--text-light);
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Dots */
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: clamp(28px, 5vh, 48px);
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.22);
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.dot.active {
+  background: var(--red-medium);
+  transform: scale(1.15);
+}
+.dot:hover {
+  background: var(--red-dark);
+}
+
+/* CTA */
+.ctaWrapper {
+  display: flex;
+  justify-content: center;
+}
+.primaryCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: clamp(12px, 2vh, 16px) clamp(22px, 3vw, 34px);
+  background: transparent;
+  color: var(--text-color);
+  border: 2px solid rgba(0, 0, 0, 0.82);
+  border-radius: 50px;
+  font-size: clamp(0.92rem, 1.9vw, 1rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+.primaryCta:hover {
+  background: rgba(213, 25, 32, 0.06);
+  border-color: var(--red-medium);
+  color: var(--red-medium);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(213, 25, 32, 0.14);
+}
+.ctaArrow {
+  transition: transform 0.25s ease;
+}
+.primaryCta:hover .ctaArrow {
+  transform: translateX(4px);
+}
+.ctaLine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(213, 25, 32, 0.18),
+    transparent
+  );
+  transition: left 0.55s ease;
+}
+.primaryCta:hover .ctaLine {
+  left: 100%;
+}
+
+/* ===== Tablet ===== */
+@media (max-width: 1024px) {
+  .section {
+    padding: 58px 28px;
+  }
+  .reviewContainer {
+    gap: 14px;
+  }
+  .navButton {
+    width: 46px;
+    height: 46px;
+  }
+}
+
+/* ===== Mobile L ===== */
+@media (max-width: 768px) {
+  .section {
+    padding: 48px 20px;
+  }
+  .backgroundGrid {
+    opacity: 0.05;
+  }
+  .title {
+    margin-top: 1.5rem;
+  }
+  .reviewContainer {
+    flex-direction: column;
+    gap: 18px;
+  }
+  /* arrows sub card pe mobil */
+  .navButton {
+    order: 2;
+    width: 48px;
+    height: 48px;
+  }
+  .reviewCard {
+    order: 1;
+    width: 100%;
+    padding: 24px 18px;
+    border-radius: 16px;
+  }
+  .reviewHeader {
+    justify-content: center;
+    text-align: center;
+  }
+  .reviewText::before {
+    left: 0;
+  }
+  .reviewText::after {
+    right: 0;
+  }
+  .dots {
+    gap: 12px;
+  }
+}
+
+/* ===== Mobile S ===== */
+@media (max-width: 420px) {
+  .section {
+    padding: 40px 16px;
+  }
+  .title {
+    font-size: clamp(1.9rem, 8.5vw, 2.6rem);
+  }
+  .reviewCard {
+    padding: 20px 16px;
+  }
+  .star {
+    font-size: 1rem;
+  }
+  .date {
+    font-size: 0.9rem;
+  }
+  .reviewText {
+    font-size: 1.02rem;
+  }
+  .primaryCta {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+    padding: 12px 20px;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .navButton,
+  .primaryCta,
+  .dot {
+    transition: none;
+  }
+  .primaryCta:hover {
+    transform: none;
+  }
+}

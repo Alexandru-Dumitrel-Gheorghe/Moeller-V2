@@ -1,0 +1,394 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  max-height: 1200px;
+  overflow: hidden;
+  background: #000;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Video Background */
+.video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+  filter: brightness(0.8) contrast(1.1);
+  transform: scale(1.05);
+  transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero.loaded .video {
+  transform: scale(1);
+}
+
+/* Overlay-uri pentru lizibilitate */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+.gradientOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  z-index: 2;
+}
+
+/* Conținut principal */
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.hero.loaded .content {
+  opacity: 1;
+}
+
+.contentInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+/* Titlu */
+.titleWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.mainTitle {
+  font-size: clamp(4rem, 12vw, 6rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 4px 20px rgba(0, 0, 0, 0.4),
+    0 8px 40px rgba(0, 0, 0, 0.3);
+  line-height: 0.9;
+  margin: 0;
+}
+
+.titleLine {
+  width: clamp(120px, 20vw, 200px);
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--red-medium),
+    transparent
+  );
+  border-radius: 2px;
+  box-shadow: 0 2px 10px rgba(213, 25, 32, 0.3);
+}
+
+/* Buton CTA */
+.buttonWrapper {
+  position: relative;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 2.8rem;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.ctaButton:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.buttonIcon {
+  transition: transform 0.3s ease;
+}
+
+.ctaButton:hover .buttonIcon {
+  transform: translateX(5px);
+}
+
+.buttonHover {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.ctaButton:hover .buttonHover {
+  left: 100%;
+}
+
+/* Scroll Indicator */
+.scrollIndicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  opacity: 0;
+  transition: all 0.8s ease 0.8s;
+}
+
+.hero.loaded .scrollIndicator {
+  opacity: 1;
+}
+
+.scrollLine {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.2)
+  );
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(10px);
+    opacity: 0.4;
+  }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .hero {
+    height: 80vh;
+    min-height: 600px;
+    max-height: 1000px;
+  }
+
+  .contentInner {
+    gap: 2.5rem;
+  }
+
+  .mainTitle {
+    font-size: clamp(3.5rem, 10vw, 6rem);
+  }
+
+  .ctaButton {
+    padding: 1.1rem 2.5rem;
+  }
+}
+
+/* Mobile Large */
+@media (max-width: 768px) {
+  .hero {
+    height: 85vh;
+    min-height: 500px;
+    max-height: 800px;
+  }
+
+  .contentInner {
+    gap: 2rem;
+  }
+
+  .mainTitle {
+    font-size: clamp(3rem, 12vw, 5rem);
+  }
+
+  .titleLine {
+    width: clamp(100px, 25vw, 150px);
+    height: 2px;
+  }
+
+  .ctaButton {
+    padding: 1rem 2.2rem;
+    font-size: 0.95rem;
+  }
+
+  .scrollIndicator {
+    bottom: 2.5rem;
+  }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+  .hero {
+    height: 90vh;
+    min-height: 450px;
+    max-height: 700px;
+  }
+
+  .contentInner {
+    gap: 1.8rem;
+  }
+
+  .mainTitle {
+    font-size: clamp(2.5rem, 14vw, 4rem);
+  }
+
+  .titleWrapper {
+    gap: 1.2rem;
+  }
+
+  .ctaButton {
+    padding: 0.9rem 2rem;
+    font-size: 0.9rem;
+    gap: 0.8rem;
+  }
+
+  .buttonIcon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .scrollIndicator {
+    bottom: 2rem;
+  }
+
+  .scrollLine {
+    height: 40px;
+  }
+}
+
+/* Very Small Mobile */
+@media (max-width: 360px) {
+  .hero {
+    min-height: 400px;
+  }
+
+  .mainTitle {
+    font-size: clamp(2.2rem, 15vw, 3.5rem);
+  }
+
+  .ctaButton {
+    padding: 0.8rem 1.8rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Landscape Mode */
+@media (max-height: 600px) and (orientation: landscape) {
+  .hero {
+    height: 100vh;
+    min-height: 400px;
+    max-height: none;
+  }
+
+  .contentInner {
+    gap: 1.5rem;
+  }
+
+  .mainTitle {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+  }
+
+  .ctaButton {
+    padding: 0.8rem 1.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Reduced Motion pentru accesibilitate */
+@media (prefers-reduced-motion: reduce) {
+  .hero,
+  .video,
+  .content,
+  .scrollIndicator,
+  .ctaButton,
+  .buttonIcon,
+  .buttonHover {
+    transition: none;
+    animation: none;
+  }
+
+  .hero {
+    opacity: 1;
+    transform: none;
+  }
+
+  .video {
+    transform: scale(1);
+  }
+
+  .content,
+  .scrollIndicator {
+    opacity: 1;
+  }
+
+  .scrollLine {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .overlay {
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  .ctaButton {
+    border-width: 3px;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .mainTitle {
+    text-shadow: 0 0 0 transparent;
+  }
+}

@@ -1,0 +1,109 @@
+.sticky {
+  position: sticky; /* face nav-ul să rămână în viewport */
+  top: 50%; /* punct de ancorare pe mijloc */
+  transform: translateY(-50%);
+  right: 40px;
+  z-index: 50;
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none; /* containerul nu interceptează; doar butoanele */
+}
+
+.list {
+  pointer-events: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.node {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 18px; /* label | linie + dot */
+  align-items: center;
+  gap: 14px;
+  min-height: 72px; /* distanța între noduri */
+}
+
+/* butonul-label */
+.label {
+  background: none;
+  border: none;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.25s ease;
+  text-align: right;
+}
+
+.label:hover,
+.activeLabel {
+  color: #fff;
+}
+
+/* coloana cu linie + dot */
+.lineWrap {
+  position: relative;
+  width: 18px;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+/* linia verticală */
+.line {
+  position: absolute;
+  left: 50%;
+  top: 24px; /* începe sub primul dot ca în model */
+  bottom: -24px; /* iese puțin pentru a acoperi spațiul dintre noduri */
+  transform: translateX(-50%);
+  width: 2px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* punctul */
+.dot {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.35) inset;
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+.dotActive {
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35),
+    0 0 0 6px rgba(255, 255, 255, 0.15);
+  transform: scale(1.08);
+}
+
+/* versiune pe fond deschis (dacă vrei) */
+:global(.on-light) .label {
+  color: rgba(0, 0, 0, 0.6);
+}
+:global(.on-light) .activeLabel {
+  color: #000;
+}
+:global(.on-light) .line {
+  background: rgba(0, 0, 0, 0.4);
+}
+:global(.on-light) .dot {
+  background: rgba(0, 0, 0, 0.55);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2) inset;
+}
+:global(.on-light) .dotActive {
+  background: #000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.35), 0 0 0 6px rgba(0, 0, 0, 0.15);
+}
+
+/* responsive: ascundem pe mobile dacă e prea strâmt */
+@media (max-width: 900px) {
+  .sticky {
+    display: none;
+  }
+}

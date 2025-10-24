@@ -1,0 +1,295 @@
+.banner {
+  background: var(--bg-light);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  max-width: 1600px;
+  min-height: 600px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* ===== STÂNGA ===== (Percentage – red premium) */
+.leftCard {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+
+  /* nou: fundal roșiatic premium */
+  background: radial-gradient(
+      900px 450px at 110% 80%,
+      rgba(213, 25, 32, 0.22) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      700px 380px at -10% 20%,
+      rgba(255, 255, 255, 0.07) 0%,
+      transparent 65%
+    ),
+    linear-gradient(140deg, #17181c 0%, #3c0b0b 52%, #1f1111 100%);
+  isolation: isolate;
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* textură subtilă diagonală */
+.leftCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.03) 0px,
+    rgba(255, 255, 255, 0.03) 2px,
+    transparent 2px,
+    transparent 10px
+  );
+  opacity: 0.35;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* flare cald în colțul dreapta jos */
+.leftCard::after {
+  content: "";
+  position: absolute;
+  right: -30%;
+  bottom: -30%;
+  width: 90%;
+  height: 90%;
+  background: radial-gradient(
+    circle at center,
+    rgba(213, 25, 32, 0.28) 0%,
+    rgba(213, 25, 32, 0.08) 35%,
+    transparent 70%
+  );
+  filter: blur(6px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.leftContent {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #fff;
+}
+
+.percentage,
+.title,
+.subtitle {
+  color: #ffffff !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.percentage {
+  font-size: clamp(3rem, 7vw, 5rem);
+  font-weight: 300;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.title {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  font-weight: 400;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+}
+
+/* buton pe fundal închis */
+.detailsButton {
+  background: rgba(255, 255, 255, 0.06);
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  color: #fff;
+  padding: 12px 34px;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.detailsButton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.28),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.detailsButton:hover {
+  background: rgba(213, 25, 32, 0.18);
+  border-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(213, 25, 32, 0.35);
+}
+
+.detailsButton:hover::before {
+  left: 100%;
+}
+
+/* ===== DREAPTA ===== (Text) */
+.rightCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 4rem;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.96),
+      rgba(255, 255, 255, 0.98)
+    ),
+    url("https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1170&q=80")
+      center/cover no-repeat;
+}
+
+.rightContent {
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--text-color);
+}
+
+.featureTitle {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.08em;
+  position: relative;
+  display: inline-block;
+}
+
+.featureTitle::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--red-medium), transparent);
+  border-radius: 1px;
+}
+
+.paragraph {
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #4a5568;
+}
+
+.highlight {
+  margin-top: 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(44, 62, 80, 0.03) 0%,
+    rgba(44, 62, 80, 0.08) 100%
+  );
+  border-left: 4px solid #4a6572;
+  padding: 1.8rem 2rem;
+  border-radius: 0 12px 12px 0;
+  font-style: italic;
+  color: #2d3748;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: 1fr;
+    max-width: 900px;
+    border-radius: 16px;
+  }
+
+  .leftCard,
+  .rightCard {
+    min-height: 400px;
+    padding: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner {
+    padding: 2rem 1rem;
+  }
+
+  .leftCard,
+  .rightCard {
+    padding: 2rem 1.5rem;
+  }
+
+  .percentage {
+    font-size: 2.8rem;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .featureTitle {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner {
+    padding: 1.5rem 1rem;
+  }
+
+  .leftCard,
+  .rightCard {
+    padding: 1.8rem 1.2rem;
+  }
+
+  .percentage {
+    font-size: 2.5rem;
+  }
+
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .detailsButton {
+    padding: 10px 28px;
+    font-size: 0.9rem;
+  }
+}

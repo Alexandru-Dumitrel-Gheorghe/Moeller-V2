@@ -1,0 +1,362 @@
+.section {
+  position: relative;
+  padding: clamp(100px, 12vh, 140px) clamp(40px, 6vw, 120px);
+  background: var(--bg-light);
+  color: var(--text-color);
+  font-family: var(--font-primary);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Background Elements matching VideoHero */
+.backgroundElements {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.backgroundGrid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(var(--red-subtle) 1px, transparent 1px),
+    linear-gradient(90deg, var(--red-subtle) 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: 0.1;
+}
+
+.cornerAccent {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 1px solid var(--red-subtle);
+  pointer-events: none;
+  opacity: 0.15;
+}
+
+.cornerAccent:nth-child(2) {
+  top: -100px;
+  left: -100px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.cornerAccent:nth-child(3) {
+  bottom: -100px;
+  right: -100px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Red Accent Line matching Header */
+.redAccent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--red-dark) 0%,
+    var(--red-medium) 50%,
+    var(--red-dark) 100%
+  );
+  z-index: 2;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Header matching VideoHero title style */
+.header {
+  text-align: center;
+  margin-bottom: clamp(60px, 8vh, 80px);
+}
+
+.title {
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-color);
+  margin: 0 0 clamp(20px, 3vh, 30px) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.titleMain {
+  font-weight: 700;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.titleSub {
+  font-size: 0.4em;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+  text-transform: none;
+}
+
+.titleUnderline {
+  position: relative;
+  width: min(120px, 30vw);
+  height: 3px;
+  margin: 0 auto;
+}
+
+.underlineMain {
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.underlineAccent {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 50px;
+  height: 1px;
+  background: var(--red-medium);
+}
+
+/* FAQ Container */
+.faqContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: clamp(60px, 8vh, 80px);
+}
+
+.faqItem {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faqItem:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.faqItem.active {
+  box-shadow: 0 8px 35px rgba(213, 25, 32, 0.15);
+}
+
+.question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 32px;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.questionContent {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}
+
+.questionNumber {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--red-medium);
+  min-width: 30px;
+}
+
+.questionText {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text-color);
+}
+
+.arrow {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--text-light);
+  flex-shrink: 0;
+}
+
+.faqItem.active .arrow {
+  transform: rotate(180deg);
+  color: var(--red-medium);
+}
+
+.answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faqItem.active .answer {
+  max-height: 300px;
+}
+
+.answerContent {
+  padding: 0 32px 28px 82px;
+}
+
+.answerContent p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-light);
+  margin: 0;
+}
+
+/* CTA Button matching VideoHero */
+.ctaWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.primaryCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: clamp(14px, 2vh, 18px) clamp(28px, 3vw, 36px);
+  background: transparent;
+  color: var(--text-color);
+  border: 2px solid rgba(0, 0, 0, 0.8);
+  border-radius: 50px;
+  font-size: clamp(0.9rem, 1.8vw, 1rem);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.05em;
+}
+
+.primaryCta:hover {
+  background: rgba(213, 25, 32, 0.05);
+  border-color: var(--red-medium);
+  color: var(--red-medium);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(213, 25, 32, 0.15);
+}
+
+.ctaArrow {
+  transition: transform 0.3s ease;
+}
+
+.primaryCta:hover .ctaArrow {
+  transform: translateX(5px);
+}
+
+.ctaLine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(213, 25, 32, 0.2),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.primaryCta:hover .ctaLine {
+  left: 100%;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .section {
+    padding: 80px 40px;
+  }
+
+  .question {
+    padding: 24px 28px;
+  }
+
+  .answerContent {
+    padding: 0 28px 24px 78px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 24px;
+  }
+
+  .question {
+    padding: 20px 24px;
+  }
+
+  .questionContent {
+    gap: 16px;
+  }
+
+  .questionNumber {
+    min-width: 25px;
+  }
+
+  .answerContent {
+    padding: 0 24px 20px 65px;
+  }
+
+  .questionText {
+    font-size: 1rem;
+  }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+  .section {
+    padding: 50px 20px;
+  }
+
+  .question {
+    padding: 18px 20px;
+  }
+
+  .answerContent {
+    padding: 0 20px 18px 60px;
+  }
+
+  .primaryCta {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .faqItem,
+  .question,
+  .primaryCta,
+  .arrow {
+    transition: none;
+  }
+
+  .primaryCta:hover {
+    transform: none;
+  }
+}
