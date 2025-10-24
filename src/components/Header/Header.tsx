@@ -9,10 +9,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -31,10 +28,7 @@ export default function Header() {
       className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}
       aria-label="Site header"
     >
-      {/* Background Overlay */}
       <div className={styles.headerBackground} />
-
-      {/* Red Accent Line */}
       <div className={styles.redAccent} />
 
       <div className={styles.headerContent}>
@@ -49,10 +43,9 @@ export default function Header() {
           <div className={styles.menuHover} />
         </button>
 
-        {/* Centru: Logo Box cu Logo Image și Text */}
+        {/* Centru: Logo */}
         <div className={styles.logoWrap} aria-label="Küchen by Möller">
           <div className={styles.logoBox}>
-            {/* Logo Image */}
             <div className={styles.logoImage}>
               <img
                 src="/images/logo-Möller.avif"
@@ -61,21 +54,33 @@ export default function Header() {
                 height={24}
               />
             </div>
-
-            {/* Logo Text */}
             <div className={styles.logoTextContent}>
               <span className={styles.logoText}>KÜCHEN</span>
               <span className={styles.logoSub}>BY MÖLLER</span>
             </div>
-
             <div className={styles.logoAccent} />
             <div className={styles.logoGlow} />
           </div>
         </div>
 
-        {/* Dreapta: CTA Button */}
-        <a href="#kontakt" className={styles.cta}>
+        {/* Dreapta: CTA pătrat */}
+        <a
+          href="#kontakt"
+          className={styles.cta}
+          aria-label="Termin vereinbaren"
+        >
           <span className={styles.ctaText}>Termin vereinbaren</span>
+          <span className={styles.ctaIcon} aria-hidden>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M5 12h14m-7-7 7 7-7 7"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
           <div className={styles.ctaHover} />
           <div className={styles.ctaLine} />
         </a>
@@ -102,7 +107,6 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Menu Footer */}
           <div className={styles.menuFooter}>
             <div className={styles.contactInfo}>
               <p className={styles.contactTitle}>Kontakt</p>
@@ -118,8 +122,6 @@ export default function Header() {
             </div>
           </div>
         </div>
-
-        {/* Menu Overlay */}
         <div
           className={styles.menuOverlay}
           onClick={() => setMenuOpen(false)}

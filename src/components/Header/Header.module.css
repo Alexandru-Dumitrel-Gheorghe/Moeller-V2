@@ -254,40 +254,79 @@
 }
 
 /* ===== CTA BUTTON ===== */
+/* ===== CTA BUTTON — square, elegant ===== */
 .cta {
   position: relative;
-  display: inline-flex;
+  display: inline-grid;
+  grid-auto-flow: column;
   align-items: center;
-  justify-content: center;
-  padding: 12px 24px;
-  border-radius: 50px;
+  gap: 10px;
+
+  height: 42px; /* în loc de pastilă înaltă */
+  padding: 0 16px; /* păstrează fontul existent */
+  border-radius: 8px; /* pătrat cu colțuri ușoare */
+  line-height: 1;
+
+  background: rgba(213, 25, 32, 0.08); /* glass-outline pe fundal închis */
+  border: 1.5px solid rgba(213, 25, 32, 0.55);
+  color: #fff;
+
   text-transform: uppercase;
   font-family: var(--font-primary);
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 0.1em;
   text-decoration: none;
-  background: var(--red-dark);
-  color: #fff;
-  border: 1px solid rgba(213, 25, 32, 0.3);
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 8px 25px rgba(213, 25, 32, 0.25);
 
-  /* FIX: stă în dreapta și nu se mai întinde */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 22px rgba(213, 25, 32, 0.18),
+    inset 0 0 0 rgba(255, 255, 255, 0); /* fără glow interior by default */
+
   justify-self: end;
   white-space: nowrap;
   z-index: 2;
 }
 
+/* mic accent în colț, subtil */
+.cta::after {
+  content: "";
+  position: absolute;
+  right: -1.5px;
+  bottom: -1.5px;
+  width: 14px;
+  height: 14px;
+  border-right: 1.5px solid var(--red-light);
+  border-bottom: 1.5px solid var(--red-light);
+  border-bottom-right-radius: 6px;
+  opacity: 0.7;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* icon săgeată */
+.ctaIcon {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+/* overlay & underline păstrate, adaptate */
 .ctaHover {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    transparent 50%,
-    rgba(255, 255, 255, 0.05) 100%
+    rgba(255, 255, 255, 0.08),
+    transparent 55%,
+    rgba(255, 255, 255, 0.06)
   );
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -295,32 +334,55 @@
 
 .ctaLine {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  left: 10px;
+  right: 10px;
+  bottom: 6px;
   height: 2px;
   background: var(--red-light);
   transform: scaleX(0);
-  transition: transform 0.3s ease;
+  transform-origin: left;
+  transition: transform 0.35s ease;
 }
 
-.cta:hover {
-  background: var(--red-medium);
+/* hover / focus */
+.cta:hover,
+.cta:focus-visible {
+  border-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 12px 30px rgba(213, 25, 32, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+
   transform: translateY(-2px);
-  box-shadow: 0 12px 35px rgba(213, 25, 32, 0.35);
-  border-color: rgba(213, 25, 32, 0.5);
+  outline: none;
 }
-
-.cta:hover .ctaHover {
+.cta:hover .ctaHover,
+.cta:focus-visible .ctaHover {
   opacity: 1;
 }
-.cta:hover .ctaLine {
+.cta:hover .ctaLine,
+.cta:focus-visible .ctaLine {
   transform: scaleX(1);
+}
+.cta:hover .ctaIcon,
+.cta:focus-visible .ctaIcon {
+  transform: translateX(4px);
+  background: rgba(0, 0, 0, 0.12);
+}
+.cta:hover::after,
+.cta:focus-visible::after {
+  opacity: 1;
+  transform: translate(-1px, -1px);
 }
 
 .ctaText {
   position: relative;
   z-index: 1;
+}
+
+/* responsivitate: păstrăm ascunderea pe mobil dacă vrei */
+@media (max-width: 768px) {
+  .cta {
+    display: none;
+  }
 }
 
 /* ===== DROPDOWN MENU ===== */

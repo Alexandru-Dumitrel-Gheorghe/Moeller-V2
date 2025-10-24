@@ -117,61 +117,86 @@
 .buttonWrapper {
   position: relative;
 }
-
 .ctaButton {
-  display: inline-flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.2rem 2.8rem;
-  background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.9);
-  color: #ffffff;
-  text-decoration: none;
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
+  display: inline-grid;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 10px;
+
+  height: 46px;
+  padding: 0 18px;
+  border-radius: 10px; /* pătrat elegant */
+  line-height: 1;
+
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  cursor: pointer;
   overflow: hidden;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 rgba(255, 255, 255, 0);
 }
 
 .ctaButton:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.14);
   border-color: #ffffff;
-  transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2),
-    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
-
-.buttonIcon {
-  transition: transform 0.3s ease;
-}
-
-.ctaButton:hover .buttonIcon {
-  transform: translateX(5px);
-}
-
-.buttonHover {
+.ctaButton::before {
+  content: "";
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
+    135deg,
+    rgba(255, 255, 255, 0.18),
+    transparent 55%,
+    rgba(255, 255, 255, 0.08)
   );
-  transition: left 0.6s ease;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.ctaButton:hover .buttonHover {
-  left: 100%;
+.ctaButton:hover::before {
+  opacity: 1;
+}
+
+/* colț accent brand */
+.ctaButton::after {
+  content: "";
+  position: absolute;
+  right: -1.5px;
+  bottom: -1.5px;
+  width: 14px;
+  height: 14px;
+  border-right: 1.5px solid var(--red-light);
+  border-bottom: 1.5px solid var(--red-light);
+  border-bottom-right-radius: 6px;
+  opacity: 0.85;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.ctaButton:hover::after {
+  transform: translate(-1px, -1px);
+}
+
+/* accesibilitate focus */
+.ctaButton:focus-visible {
+  outline: none;
+  background: rgba(255, 255, 255, 0.16);
+  border-color: #ffffff;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45),
+    0 0 0 2px rgba(255, 255, 255, 0.25) inset;
 }
 
 /* Scroll Indicator */

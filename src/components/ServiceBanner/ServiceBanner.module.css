@@ -28,7 +28,6 @@
   justify-content: center;
   padding: 3rem;
 
-  /* nou: fundal roșiatic premium */
   background: radial-gradient(
       900px 450px at 110% 80%,
       rgba(213, 25, 32, 0.22) 0%,
@@ -46,7 +45,6 @@
     inset 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
-/* textură subtilă diagonală */
 .leftCard::before {
   content: "";
   position: absolute;
@@ -63,7 +61,6 @@
   pointer-events: none;
 }
 
-/* flare cald în colțul dreapta jos */
 .leftCard::after {
   content: "";
   position: absolute;
@@ -122,48 +119,81 @@
   opacity: 0.9;
 }
 
-/* buton pe fundal închis */
+/* === Details Button — square & elegant (glass/outline) === */
 .detailsButton {
+  position: relative;
+  display: inline-grid;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 10px;
+
+  height: 46px;
+  padding: 0 18px;
+  border-radius: 10px; /* pătrat, nu pastilă */
+  line-height: 1;
+
   background: rgba(255, 255, 255, 0.06);
-  border: 2px solid rgba(255, 255, 255, 0.75);
   color: #fff;
-  padding: 12px 34px;
-  border-radius: 50px;
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  font-weight: 600; /* păstrează look-ul */
   cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 500;
-  backdrop-filter: blur(10px);
-  position: relative;
   overflow: hidden;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 rgba(255, 255, 255, 0);
 }
 
 .detailsButton::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.28),
-    transparent
+    135deg,
+    rgba(255, 255, 255, 0.18),
+    transparent 55%,
+    rgba(255, 255, 255, 0.08)
   );
-  transition: left 0.6s ease;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.detailsButton:hover {
-  background: rgba(213, 25, 32, 0.18);
+/* accent de colț brand, ca la logo */
+.detailsButton::after {
+  content: "";
+  position: absolute;
+  right: -1.5px;
+  bottom: -1.5px;
+  width: 14px;
+  height: 14px;
+  border-right: 1.5px solid var(--red-light);
+  border-bottom: 1.5px solid var(--red-light);
+  border-bottom-right-radius: 6px;
+  opacity: 0.85;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.detailsButton:hover,
+.detailsButton:focus-visible {
+  background: rgba(255, 255, 255, 0.14);
   border-color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(213, 25, 32, 0.35);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  outline: none;
 }
-
-.detailsButton:hover::before {
-  left: 100%;
+.detailsButton:hover::before,
+.detailsButton:focus-visible::before {
+  opacity: 1;
+}
+.detailsButton:hover::after,
+.detailsButton:focus-visible::after {
+  transform: translate(-1px, -1px);
 }
 
 /* ===== DREAPTA ===== (Text) */
@@ -289,7 +319,11 @@
   }
 
   .detailsButton {
-    padding: 10px 28px;
+    height: 44px;
+    padding: 0 16px;
     font-size: 0.9rem;
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
   }
 }
