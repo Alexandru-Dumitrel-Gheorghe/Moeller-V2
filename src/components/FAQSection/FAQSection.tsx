@@ -60,8 +60,11 @@ export default function FAQSection() {
         <div className={styles.headerRow}>
           <div className={styles.header}>
             <h2 className={styles.title}>
-              <span className={styles.titleMain}>Was unsere Kunden sagen</span>
-              <span className={styles.titleSub}>Häufig gestellte Fragen</span>
+              <span className={styles.titleMain}>HÄUFIG GESTELLTE FRAGEN</span>
+              <span className={styles.titleSub}>
+                Alles, was Sie über unsere Küchen, Planung und Services wissen
+                möchten.
+              </span>
             </h2>
             <div className={styles.titleUnderline}>
               <div className={styles.underlineMain} />

@@ -1,14 +1,15 @@
 .ctaSection {
   position: relative;
   width: 100%;
-  height: 50vh;
-  min-height: 400px;
-  max-height: 500px;
+  height: 65vh; /* Mărit de la 50vh la 65vh */
+  min-height: 500px; /* Mărit de la 400px la 500px */
+  max-height: 700px; /* Mărit de la 500px la 700px */
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   background: #000;
+  padding: clamp(40px, 8vh, 80px) 0; /* Spațiu adăugat la top și bottom */
 }
 
 /* Background Image */
@@ -48,9 +49,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2.5rem;
+  gap: 3rem; /* Mărit de la 2.5rem la 3rem */
   padding: 0 2rem;
   max-width: 800px;
+  margin: auto 0; /* Asigură centrarea verticală */
 }
 
 /* Header - Consistent with other components */
@@ -58,12 +60,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem; /* Mărit ușor */
 }
 
 /* Title - Same style as other components */
 .title {
-  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-size: clamp(2.2rem, 5.5vw, 3rem); /* Mărit ușor dimensiunile */
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -71,7 +73,7 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px; /* Mărit de la 8px */
 }
 
 .titleMain {
@@ -83,7 +85,7 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* Umbră mai pronunțată */
 }
 
 .titleSub {
@@ -93,25 +95,27 @@
   opacity: 0.9;
   text-transform: none;
   color: rgba(255, 255, 255, 0.8);
+  margin-top: 4px;
 }
 
 .titleUnderline {
   position: relative;
-  width: min(140px, 25vw);
+  width: min(160px, 30vw); /* Mărit ușor */
   height: 3px;
+  margin-top: 8px;
 }
 
 .underlineMain {
   width: 100%;
   height: 2px;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.4); /* Mai vizibil */
 }
 
 .underlineAccent {
   position: absolute;
   top: 1px;
   left: 0;
-  width: 50px;
+  width: 60px; /* Mărit de la 50px */
   height: 1px;
   background: var(--red-medium);
 }
@@ -121,22 +125,23 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  padding: 16px 32px;
+  padding: 18px 36px; /* Mărit padding-ul */
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 1.1rem; /* Mărit ușor */
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px); /* Mărit blur-ul */
+  -webkit-backdrop-filter: blur(12px);
   position: relative;
   overflow: hidden;
+  margin-top: 1rem; /* Spațiu adăugat deasupra butonului */
 }
 
 .ctaButton::before {
@@ -158,8 +163,8 @@
 .ctaButton:hover {
   background: rgba(255, 255, 255, 0.15);
   border-color: rgba(255, 255, 255, 0.6);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  transform: translateY(-4px); /* Efect de hover mai pronunțat */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1); /* Umbră adăugată */
 }
 
 .ctaButton:hover::before {
@@ -171,7 +176,7 @@
 }
 
 .ctaButton:hover .buttonArrow {
-  transform: translateX(4px);
+  transform: translateX(5px); /* Mărit mișcarea săgeții */
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
@@ -179,30 +184,36 @@
 /* Tablet */
 @media (max-width: 1024px) {
   .ctaSection {
-    height: 45vh;
-    min-height: 350px;
+    height: 55vh; /* Mărit de la 45vh */
+    min-height: 450px; /* Mărit de la 350px */
+    padding: clamp(35px, 7vh, 70px) 0;
   }
 
   .content {
-    gap: 2rem;
+    gap: 2.5rem; /* Mărit de la 2rem */
+  }
+
+  .title {
+    font-size: clamp(2rem, 5vw, 2.8rem);
   }
 }
 
 /* Mobile Large */
 @media (max-width: 768px) {
   .ctaSection {
-    height: 40vh;
-    min-height: 300px;
+    height: 50vh; /* Mărit de la 40vh */
+    min-height: 400px; /* Mărit de la 300px */
+    padding: clamp(30px, 6vh, 60px) 0;
   }
 
   .content {
-    gap: 1.75rem;
+    gap: 2.25rem; /* Mărit de la 1.75rem */
     padding: 0 1.5rem;
   }
 
   .title {
-    font-size: clamp(1.8rem, 6vw, 2.2rem);
-    margin-top: 2rem;
+    font-size: clamp(1.9rem, 6vw, 2.4rem);
+    margin-top: 1rem;
   }
 
   .titleMain {
@@ -214,26 +225,31 @@
   }
 
   .ctaButton {
-    padding: 14px 28px;
-    font-size: 0.95rem;
+    padding: 16px 32px; /* Mărit de la 14px 28px */
+    font-size: 1.05rem; /* Mărit de la 0.95rem */
+  }
+
+  .titleUnderline {
+    margin-top: 12px;
   }
 }
 
 /* Mobile Small */
 @media (max-width: 480px) {
   .ctaSection {
-    height: 35vh;
-    min-height: 250px;
+    height: 45vh; /* Mărit de la 35vh */
+    min-height: 350px; /* Mărit de la 250px */
+    padding: clamp(25px, 5vh, 50px) 0;
   }
 
   .content {
     padding: 0 1rem;
-    gap: 1.5rem;
+    gap: 2rem; /* Mărit de la 1.5rem */
   }
 
   .title {
-    font-size: clamp(1.6rem, 7vw, 2rem);
-    margin-top: 2rem;
+    font-size: clamp(1.7rem, 7vw, 2.2rem);
+    margin-top: 1rem;
   }
 
   .titleMain {
@@ -245,42 +261,83 @@
   }
 
   .titleUnderline {
-    width: min(120px, 30vw);
+    width: min(140px, 35vw); /* Mărit ușor */
+    margin-top: 10px;
   }
 
   .ctaButton {
-    padding: 12px 24px;
-    font-size: 0.9rem;
+    padding: 14px 28px; /* Mărit de la 12px 24px */
+    font-size: 1rem; /* Mărit de la 0.9rem */
     width: 100%;
-    max-width: 280px;
+    max-width: 300px; /* Mărit de la 280px */
     justify-content: center;
+    margin-top: 0.5rem;
   }
 }
 
 /* Extra Small Devices */
 @media (max-width: 360px) {
   .ctaSection {
-    min-height: 220px;
+    min-height: 320px; /* Mărit de la 220px */
+    padding: clamp(20px, 4vh, 40px) 0;
   }
 
   .content {
-    gap: 1.25rem;
+    gap: 1.75rem; /* Mărit de la 1.25rem */
   }
 
   .title {
-    font-size: clamp(1.4rem, 8vw, 1.8rem);
+    font-size: clamp(1.5rem, 8vw, 2rem);
+  }
+
+  .ctaButton {
+    padding: 12px 24px;
+    font-size: 0.95rem;
   }
 }
 
-/* Landscape Orientation */
+/* Landscape Orientation - Îmbunătățit */
 @media (max-height: 500px) and (orientation: landscape) {
   .ctaSection {
-    height: 70vh;
-    min-height: 300px;
+    height: 85vh; /* Mărit de la 70vh */
+    min-height: 350px;
+    padding: clamp(20px, 5vh, 40px) 0;
   }
 
   .content {
-    gap: 1.5rem;
+    gap: 1.75rem;
+  }
+
+  .title {
+    font-size: clamp(1.8rem, 4vw, 2.2rem);
+  }
+
+  .ctaButton {
+    padding: 14px 28px;
+    font-size: 1rem;
+  }
+}
+
+/* Large Screens - Spațiu suplimentar pentru ecrane mari */
+@media (min-width: 1600px) {
+  .ctaSection {
+    height: 60vh;
+    min-height: 600px;
+    max-height: 800px;
+    padding: clamp(50px, 10vh, 100px) 0;
+  }
+
+  .content {
+    gap: 3.5rem;
+  }
+
+  .title {
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+  }
+
+  .ctaButton {
+    padding: 20px 40px;
+    font-size: 1.2rem;
   }
 }
 
@@ -298,5 +355,20 @@
 
   .ctaButton:hover {
     transform: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .titleMain {
+    background: linear-gradient(135deg, #ffffff, #ffffff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .ctaButton {
+    border-color: #ffffff;
+    background: rgba(255, 255, 255, 0.2);
   }
 }

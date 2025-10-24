@@ -541,3 +541,18 @@
     transform: none;
   }
 }
+
+@media (max-width: 768px) {
+  .titleMain {
+    letter-spacing: 0.035em;
+  }
+  .titleSub {
+    letter-spacing: 0.02em;
+  }
+}
+
+@media (max-width: 480px) {
+  .titleSub {
+    font-size: clamp(0.98rem, 2.6vw, 1.08rem);
+  } /* ușor mai mare pe mobile */
+}
