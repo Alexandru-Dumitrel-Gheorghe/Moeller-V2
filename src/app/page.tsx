@@ -8,6 +8,8 @@ import ServiceBanner from "@/components/ServiceBanner/ServiceBanner";
 import CtaSection from "@/components/CtaSection/CtaSection";
 import ReviewsSection from "@/components/Reviews/Reviews";
 import FAQSection from "@/components/FAQSection/FAQSection";
+import ContactForm from "@/components/ContactForm/ContactForm";
+import Footer from "@/components/Footer/Footer";
 
 export default function Home() {
   return (
@@ -21,6 +23,8 @@ export default function Home() {
       <CtaSection />
       <ReviewsSection />
       <FAQSection />
+      <ContactForm />
+      <Footer />
     </div>
   );
 }

@@ -1,0 +1,430 @@
+.section {
+  position: relative;
+  padding: clamp(100px, 12vh, 140px) clamp(40px, 6vw, 120px);
+  background: var(--bg-light);
+  color: var(--text-color);
+  font-family: var(--font-primary);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Background Elements matching your design */
+.backgroundElements {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.backgroundGrid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(var(--red-subtle) 1px, transparent 1px),
+    linear-gradient(90deg, var(--red-subtle) 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: 0.1;
+}
+
+.cornerAccent {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 1px solid var(--red-subtle);
+  pointer-events: none;
+  opacity: 0.15;
+}
+
+.cornerAccent:nth-child(2) {
+  top: -100px;
+  left: -100px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.cornerAccent:nth-child(3) {
+  bottom: -100px;
+  right: -100px;
+  border-left: none;
+  border-top: none;
+}
+
+.redAccent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--red-dark) 0%,
+    var(--red-medium) 50%,
+    var(--red-dark) 100%
+  );
+  z-index: 2;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header matching your design */
+.header {
+  text-align: center;
+  margin-bottom: clamp(60px, 8vh, 80px);
+}
+
+.title {
+  font-size: clamp(2.2rem, 6vw, 3.2rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-color);
+  margin: 0 0 clamp(16px, 2.5vh, 28px) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 3rem;
+}
+.titleMain {
+  font-weight: 800;
+  font-size: 1.15em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.titleSub {
+  font-size: 0.4em;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+  text-transform: none;
+}
+
+.titleUnderline {
+  position: relative;
+  width: min(150px, 30vw);
+  height: 3px;
+  margin: 0 auto;
+}
+
+.underlineMain {
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.underlineAccent {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 50px;
+  height: 1px;
+  background: var(--red-medium);
+}
+
+/* Content Layout - UPDATED for equal height */
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: stretch; /* Schimbat de la 'start' la 'stretch' */
+}
+
+/* Contact Information - UPDATED for equal height */
+.contactInfo {
+  display: flex; /* Adăugat */
+}
+
+.infoCard {
+  background: #fff;
+  padding: 50px 40px; /* Mărit padding-ul vertical */
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  width: 100%; /* Adăugat */
+  display: flex; /* Adăugat */
+  flex-direction: column; /* Adăugat */
+  min-height: 100%; /* Asigură că ocupă întreaga înălțime */
+}
+
+.infoHeader {
+  margin-bottom: 40px; /* Mărit spațiul */
+}
+
+.infoTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0 0 12px 0;
+}
+
+.infoLine {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--red-medium), transparent);
+  border-radius: 1px;
+}
+
+.infoItems {
+  display: flex;
+  flex-direction: column;
+  gap: 28px; /* Mărit gap-ul între items */
+  flex: 1; /* Ocupă spațiul disponibil */
+}
+
+.infoItem {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.infoIcon {
+  width: 44px;
+  height: 44px;
+  background: rgba(213, 25, 32, 0.05);
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: var(--red-medium);
+  flex-shrink: 0;
+  border: 1px solid rgba(213, 25, 32, 0.1);
+}
+
+.infoContent {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* Mărit gap-ul */
+  flex: 1;
+}
+
+.infoLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.infoValue {
+  font-size: 1rem;
+  color: var(--text-color);
+  line-height: 1.4;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.infoValue:hover {
+  color: var(--red-medium);
+}
+
+.hours {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* Mărit gap-ul */
+}
+
+/* Form Styles - UPDATED for equal height */
+.formContainer {
+  background: #fff;
+  padding: 50px 40px; /* Mărit padding-ul vertical pentru consistență */
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  height: 100%; /* Asigură că ocupă întreaga înălțime */
+  display: flex; /* Adăugat */
+  flex-direction: column; /* Adăugat */
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex: 1; /* Ocupă spațiul disponibil */
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.input,
+.select,
+.textarea {
+  padding: 14px 16px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #fff;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--red-medium);
+  box-shadow: 0 0 0 3px rgba(213, 25, 32, 0.1);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 140px; /* Mărit înălțimea minimă */
+  flex: 1; /* Ocupă spațiul disponibil */
+}
+
+.select {
+  cursor: pointer;
+}
+
+/* Submit Button matching your design */
+.submitButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: clamp(14px, 2vh, 18px) clamp(28px, 3vw, 36px);
+  background: transparent;
+  color: var(--text-color);
+  border: 2px solid rgba(0, 0, 0, 0.8);
+  border-radius: 50px;
+  font-size: clamp(0.9rem, 1.8vw, 1rem);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.05em;
+  align-self: flex-start;
+  margin-top: auto; /* Împinge butonul în jos */
+}
+
+.submitButton:hover {
+  background: rgba(213, 25, 32, 0.05);
+  border-color: var(--red-medium);
+  color: var(--red-medium);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(213, 25, 32, 0.15);
+}
+
+.buttonArrow {
+  transition: transform 0.3s ease;
+}
+
+.submitButton:hover .buttonArrow {
+  transform: translateX(5px);
+}
+
+.buttonLine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(213, 25, 32, 0.2),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.submitButton:hover .buttonLine {
+  left: 100%;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .section {
+    padding: 80px 40px;
+  }
+
+  .content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .contactInfo {
+    position: static;
+  }
+
+  .infoCard,
+  .formContainer {
+    padding: 40px 32px; /* Ajustat padding-ul */
+  }
+}
+
+/* Mobile Large */
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 24px;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .infoCard,
+  .formContainer {
+    padding: 32px 24px; /* Ajustat padding-ul */
+  }
+
+  .infoItem {
+    gap: 12px;
+  }
+
+  .infoIcon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+  .section {
+    padding: 50px 20px;
+  }
+
+  .infoCard,
+  .formContainer {
+    padding: 28px 20px; /* Ajustat padding-ul */
+  }
+
+  .submitButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .submitButton,
+  .input,
+  .select,
+  .textarea {
+    transition: none;
+  }
+
+  .submitButton:hover {
+    transform: none;
+  }
+}
