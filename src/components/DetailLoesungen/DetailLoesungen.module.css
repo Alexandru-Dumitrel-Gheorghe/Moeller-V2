@@ -82,13 +82,14 @@
   max-width: 680px;
 }
 
+/* === TITLU (REPLACE) === */
 .title {
-  font-size: clamp(2rem, 5vw, 2.8rem);
-  font-weight: 300;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.005em; /* mai puțin “împrăștiat” */
   color: var(--text-color);
-  margin: 0 0 clamp(20px, 3vh, 30px) 0;
+  margin: 0 0 clamp(20px, 3vh, 28px) 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -96,16 +97,16 @@
 
 .titleMain {
   font-weight: 700;
-  font-size: 1.2em;
+  font-size: 1.18em;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.02em; /* a fost 0.08em – mult prea mare */
 }
 
 .titleSub {
-  font-size: 0.4em;
-  font-weight: 300;
-  letter-spacing: 0.05em;
-  opacity: 0.8;
+  font-size: 0.42em;
+  font-weight: 400;
+  letter-spacing: 0.015em; /* mai strâns decât 0.05em */
+  opacity: 0.85;
   text-transform: none;
 }
 
@@ -132,13 +133,14 @@
 }
 
 .lead {
-  font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+  font-size: clamp(1.05rem, 1.7vw, 1.22rem);
   font-weight: 500;
-  line-height: 1.6;
+  line-height: 1.55; /* mai compact */
+  letter-spacing: -0.003em;
   color: var(--text-color);
-  margin: 0 0 clamp(24px, 3vh, 32px) 0;
+  margin: 0 0 clamp(22px, 3vh, 28px) 0;
   border-left: 3px solid var(--red-medium);
-  padding-left: 20px;
+  padding-left: 18px;
   background: linear-gradient(90deg, rgba(213, 25, 32, 0.03), transparent 80%);
 }
 
@@ -150,8 +152,9 @@
 }
 
 .p {
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: 1.02rem;
+  line-height: 1.6; /* de la 1.7 -> mai strâns și lizibil */
+  letter-spacing: -0.002em;
   color: var(--text-color);
   font-weight: 300;
   margin: 0;
@@ -339,10 +342,11 @@
   transform: translateY(5px);
 }
 
+/* === Caption nume (REPLACE) === */
 .person {
   font-weight: 700;
-  letter-spacing: 0.05em;
-  font-size: 1.1rem;
+  letter-spacing: 0.02em; /* de la 0.05em */
+  font-size: 1.06rem;
   color: var(--text-color);
   text-transform: uppercase;
 }
@@ -402,8 +406,17 @@
     gap: 40px;
   }
 
+  /* === Mobile L title (REPLACE în blocul existent) === */
   .title {
-    font-size: clamp(1.8rem, 6vw, 2.2rem);
+    font-size: clamp(1.7rem, 6vw, 2.1rem);
+    letter-spacing: -0.003em;
+  }
+
+  .titleMain {
+    letter-spacing: 0.03em;
+  } /* un pic mai “aerat” pe ecrane mici */
+  .titleSub {
+    letter-spacing: 0.02em;
   }
 
   .lead {
@@ -451,17 +464,28 @@
     padding: 50px 20px;
   }
 
+  /* === Mobile S title (REPLACE în blocul existent) === */
   .title {
-    font-size: clamp(1.6rem, 7vw, 2rem);
-    margin-top: 2rem;
+    font-size: clamp(1.55rem, 7vw, 1.95rem);
+    margin-top: 1.6rem;
+    letter-spacing: -0.002em;
   }
 
   .titleMain {
-    letter-spacing: 0.06em;
+    letter-spacing: 0.035em;
+  } /* păstrează claritatea pe DPI mic */
+  .titleSub {
+    font-size: 0.34em;
+    letter-spacing: 0.02em;
   }
 
-  .titleSub {
-    font-size: 0.3em;
+  .lead {
+    font-size: 0.98rem;
+    line-height: 1.5;
+  }
+  .p {
+    font-size: 0.98rem;
+    line-height: 1.55;
   }
 
   .lead {

@@ -16,11 +16,12 @@
   z-index: 0;
 }
 
+/* Background grid (FIX) */
 .backgroundGrid {
   position: absolute;
   inset: 0;
   background-image: linear-gradient(var(--red-subtle) 1px, transparent 1px),
-    linear-gradient(90px, var(--red-subtle) 1px, transparent 1px);
+    linear-gradient(90deg, var(--red-subtle) 1px, transparent 1px);
   background-size: 80px 80px;
   opacity: 0.1;
 }
@@ -76,32 +77,37 @@
   margin-bottom: clamp(50px, 6vh, 70px);
 }
 
+/* === Title system (REPLACE) === */
 .title {
-  font-size: clamp(2rem, 5vw, 2.8rem);
-  font-weight: 300;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  font-family: "Clash Display", "Inter", sans-serif;
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.005em; /* strânge titlul ca în celelalte */
   color: var(--text-color);
-  margin: 0 0 clamp(16px, 2vh, 24px) 0;
+  margin: 0 0 clamp(18px, 3vh, 28px) 0;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+  text-align: center; /* păstrăm centrul, dacă vrei stânga -> scoți */
 }
 
 .titleMain {
   font-weight: 700;
-  font-size: 1.2em;
+  font-size: 1.18em;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.02em; /* la fel ca în rest, NU 0.08em */
+  color: var(--text-color); /* rămâne culoarea secțiunii */
 }
 
 .titleSub {
-  font-size: 0.35em;
-  font-weight: 300;
-  letter-spacing: 0.04em;
-  opacity: 0.8;
+  font-size: 0.42em;
+  font-weight: 400;
+  letter-spacing: 0.015em; /* mai strâns */
+  opacity: 0.85;
   text-transform: none;
   line-height: 1.3;
+  color: var(--text-light, rgba(0, 0, 0, 0.7));
 }
 
 .titleUnderline {
@@ -351,6 +357,16 @@
   .cardContent {
     padding: 24px;
   }
+  .title {
+    font-size: clamp(1.7rem, 6vw, 2.1rem);
+    letter-spacing: -0.003em;
+  }
+  .titleMain {
+    letter-spacing: 0.03em;
+  }
+  .titleSub {
+    letter-spacing: 0.02em;
+  }
 
   .serviceTitle {
     font-size: 1.3rem;
@@ -381,16 +397,16 @@
   }
 
   .title {
-    font-size: clamp(1.6rem, 7vw, 2rem);
-    margin-top: 2rem;
+    font-size: clamp(1.55rem, 7vw, 1.95rem);
+    margin-top: 1.6rem;
+    letter-spacing: -0.002em;
   }
-
   .titleMain {
-    letter-spacing: 0.06em;
+    letter-spacing: 0.035em;
   }
-
   .titleSub {
-    font-size: 0.3em;
+    font-size: 0.34em;
+    letter-spacing: 0.02em;
   }
 
   .categoryBadge {

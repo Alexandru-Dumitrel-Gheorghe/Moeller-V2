@@ -20,6 +20,15 @@ body {
   background-color: var(--bg-light);
   scroll-behavior: smooth;
 }
+/* === Typography polish (ADD) === */
+.section *,
+.section *::before,
+.section *::after {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+}
 
 /* ------------------------------
    🎨 COLOR SYSTEM
