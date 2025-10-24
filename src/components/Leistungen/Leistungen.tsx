@@ -105,32 +105,6 @@ export default function Leistungen() {
             </div>
           </section>
 
-          {/* Küchenstile Section */}
-          <section id="stile" className={styles.stileSection}>
-            <h2 className={styles.sectionTitle}>Küchenstile</h2>
-            <div className={styles.kitchenGrid}>
-              {KITCHEN_TYPES.map((kitchen, index) => (
-                <div key={index} className={styles.kitchenCard}>
-                  <div className={styles.kitchenHeader}>
-                    <h3 className={styles.kitchenName}>{kitchen.name}</h3>
-                    <div className={styles.kitchenAccent} />
-                  </div>
-                  <p className={styles.kitchenDescription}>
-                    {kitchen.description}
-                  </p>
-                  <ul className={styles.kitchenFeatures}>
-                    {kitchen.features.map((feature, idx) => (
-                      <li key={idx} className={styles.feature}>
-                        <span className={styles.featureIcon}>•</span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </section>
-
           {/* Single CTA Section */}
           <section id="beratung" className={styles.ctaSection}>
             <div className={styles.ctaContent}>
