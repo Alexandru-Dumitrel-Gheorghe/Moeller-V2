@@ -225,8 +225,9 @@
 /* Main Content */
 .content {
   position: absolute;
-  bottom: clamp(80px, 12vh, 160px);
-  left: clamp(40px, 6vw, 120px);
+  bottom: clamp(80px, 12vh, 160px) !important;
+  /* mutat mai spre dreapta */
+  left: calc(clamp(60px, 6vw, 300px) + 90px);
   z-index: 3;
   max-width: 650px;
   opacity: 0;
@@ -242,7 +243,6 @@
 .contentInner {
   width: 100%;
 }
-
 /* Title */
 .titleWrapper {
   margin-bottom: clamp(20px, 3vh, 30px);

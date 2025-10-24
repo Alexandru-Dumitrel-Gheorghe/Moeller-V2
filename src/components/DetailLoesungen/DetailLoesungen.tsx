@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./DetailLoesungen.module.css";
 
 export default function DetailLoesungen() {
   return (
     <section className={styles.section} aria-labelledby="detail-headline">
-      {/* Background Elements matching your design */}
+      {/* Background Elements */}
       <div className={styles.backgroundElements}>
         <div className={styles.backgroundGrid} />
         <div className={styles.cornerAccent} />
@@ -30,28 +31,29 @@ export default function DetailLoesungen() {
               <div className={styles.underlineAccent} />
             </div>
 
+            {/* LEAD replaced */}
             <p className={styles.lead}>
-              Unsere Küche ist weit mehr als nur ein funktionaler Raum – sie ist
-              das Herz unseres Zuhauses.
+              Wir lieben Küchen – und Ihre ganz besonders!
             </p>
 
+            {/* PARAGRAPHS replaced (3 ca înainte) */}
             <div className={styles.paragraphs}>
               <p className={styles.p}>
-                Bei proplan KÜCHEN- UND RAUMDESIGN in Straßenhaus haben wir es
-                uns zur Aufgabe gemacht, anspruchsvolle Projekte auf höchstem
-                Niveau zu realisieren.
+                Genau deshalb setzen wir Ihre Wünsche und Ansprüche
+                professionell und zuverlässig um.
               </p>
               <p className={styles.p}>
-                Unsere Kernkompetenz liegt darin, eine Wohlfühlatmosphäre zu
-                schaffen – in modernstem Design und mit höchster Funktionalität.
+                Unsere Küchen sind individuell und nicht von der Stange –
+                präzise geplant, hochwertig umgesetzt.
               </p>
               <p className={styles.p}>
-                Denn Eleganz und Harmonie entstehen nur dann, wenn die Details
-                passen.
+                Vor allem schenken sie Ihnen ein großes Maß an Lebensqualität –
+                zu 100&nbsp;%. <br />
+                <em>Klaudia &amp; Frank Möller</em>
               </p>
             </div>
 
-            <a href="#team" className={styles.cta}>
+            <Link href="/team" className={styles.cta}>
               <span className={styles.ctaText}>Team kennenlernen</span>
               <div className={styles.ctaArrow}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -65,7 +67,7 @@ export default function DetailLoesungen() {
                 </svg>
               </div>
               <div className={styles.ctaLine} />
-            </a>
+            </Link>
           </div>
 
           {/* RIGHT - Image */}
@@ -73,7 +75,7 @@ export default function DetailLoesungen() {
             <div className={styles.imageWrap}>
               <Image
                 src="/images/KFM.avif"
-                alt="Jonas Neitzert – Geschäftsführer proplan KÜCHEN- UND RAUMDESIGN"
+                alt="Klaudia & Frank Möller in moderner Küche"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className={styles.image}
@@ -83,10 +85,8 @@ export default function DetailLoesungen() {
             </div>
 
             <figcaption className={styles.caption}>
-              <strong className={styles.person}>JONAS NEITZERT</strong>
-              <span className={styles.role}>
-                Geschäftsführer proplan KÜCHEN- UND RAUMDESIGN
-              </span>
+              <strong className={styles.person}>KLAUDIA & FRANK MÖLLER</strong>
+              <span className={styles.role}>Inhaber · Möller Küchen</span>
             </figcaption>
           </figure>
         </div>

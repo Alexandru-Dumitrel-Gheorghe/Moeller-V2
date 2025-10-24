@@ -39,15 +39,8 @@ const SERVICES: ServiceItem[] = [
 export default function Leistungen() {
   return (
     <section className={styles.section} aria-labelledby="leistungen-title">
-      {/* Dark Background with Red Accent */}
-      <div className={styles.darkBackground} />
-
-      {/* Background Elements */}
-      <div className={styles.backgroundElements}>
-        <div className={styles.backgroundGrid} />
-        <div className={styles.cornerAccent} />
-        <div className={styles.cornerAccent} />
-      </div>
+      {/* Simplified Background */}
+      <div className={styles.background} />
 
       {/* Red Accent Line */}
       <div className={styles.redAccent} />
@@ -60,32 +53,27 @@ export default function Leistungen() {
             <span className={styles.titleSub}>Unsere Werte</span>
           </h2>
           <div className={styles.titleUnderline}>
-            <div className={styles.underlineMain} />
             <div className={styles.underlineAccent} />
           </div>
         </div>
 
-        {/* Services Grid */}
+        {/* Services Grid - Clean Layout */}
         <div className={styles.servicesGrid}>
           {SERVICES.map((service, index) => (
             <div key={index} className={styles.serviceCard}>
-              {/* Percentage Circle */}
-              <div className={styles.percentageCircle}>
+              {/* Percentage */}
+              <div className={styles.percentageWrapper}>
                 <span className={styles.percentage}>{service.percentage}</span>
-                <div className={styles.circleBackground} />
-                <div className={styles.circleGlow} />
               </div>
 
               {/* Content */}
               <div className={styles.serviceContent}>
                 <h3 className={styles.serviceTitle}>{service.title}</h3>
+                <div className={styles.titleLine} />
                 <p className={styles.serviceDescription}>
                   {service.description}
                 </p>
               </div>
-
-              {/* Red Accent Line */}
-              <div className={styles.cardAccent} />
             </div>
           ))}
         </div>
@@ -105,7 +93,6 @@ export default function Leistungen() {
                 />
               </svg>
             </div>
-            <div className={styles.ctaLine} />
           </a>
         </div>
       </div>

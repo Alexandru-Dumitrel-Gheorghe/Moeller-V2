@@ -12,6 +12,7 @@ import ContactForm from "@/components/ContactForm/ContactForm";
 import Footer from "@/components/Footer/Footer";
 import DetailLoesungen from "@/components/DetailLoesungen/DetailLoesungen";
 import Leistungen from "@/components/Leistungen/Leistungen";
+import ServicesOverview from "@/components/ServicesOverview/ServicesOverview";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
       <CtaSection />
       <DetailLoesungen />
       <Leistungen />
+      <ServicesOverview />
       <ReviewsSection />
       <FAQSection />
       <ContactForm />
