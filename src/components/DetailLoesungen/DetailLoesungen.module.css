@@ -213,30 +213,50 @@
   left: 100%;
 }
 
-/* RIGHT - Image */
+/* RIGHT - Image cu efect de plutire */
 .figure {
   margin: 0;
   position: relative;
+  perspective: 1000px;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
 }
 
 .imageWrap {
   position: relative;
   width: 100%;
   aspect-ratio: 16/11;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
   background: #f5f5f5;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1), 0 8px 30px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
   isolation: isolate;
+  transform: translateZ(0) rotateX(2deg) rotateY(-2deg);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.imageContainer:hover .imageWrap {
+  transform: translateZ(20px) rotateX(0deg) rotateY(0deg) translateY(-10px);
+  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15),
+    0 20px 50px rgba(213, 25, 32, 0.1), 0 0 0 1px rgba(213, 25, 32, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .image {
   object-fit: cover;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: scale(1.01);
 }
 
-.imageWrap:hover .image {
-  transform: scale(1.05);
+.imageContainer:hover .image {
+  transform: scale(1.03);
 }
 
 .imageGlow {
@@ -245,25 +265,78 @@
   inset: 0;
   pointer-events: none;
   background: radial-gradient(
-    60% 60% at 80% 20%,
-    rgba(213, 25, 32, 0.1),
-    transparent 60%
-  );
+      60% 60% at 80% 20%,
+      rgba(213, 25, 32, 0.15) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      40% 40% at 20% 80%,
+      rgba(255, 255, 255, 0.3) 0%,
+      transparent 50%
+    );
   mix-blend-mode: multiply;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.6s ease;
 }
 
-.imageWrap:hover .imageGlow {
+.imageContainer:hover .imageGlow {
   opacity: 1;
+}
+
+/* Floating shadow effect */
+.floatingShadow {
+  position: absolute;
+  bottom: -20px;
+  left: 10%;
+  right: 10%;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  filter: blur(15px);
+  z-index: -1;
+  transform: scale(0.9);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  opacity: 0.7;
+}
+
+.imageContainer:hover .floatingShadow {
+  transform: scale(1) translateY(10px);
+  opacity: 0.4;
+  filter: blur(20px);
+}
+
+/* Floating accent element */
+.floatingAccent {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--red-medium), transparent 70%);
+  border-radius: 12px;
+  z-index: -1;
+  opacity: 0;
+  transform: rotate(45deg) scale(0.8);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  filter: blur(5px);
+}
+
+.imageContainer:hover .floatingAccent {
+  opacity: 0.3;
+  transform: rotate(45deg) scale(1);
 }
 
 .caption {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  padding: 20px 0 0 0;
+  padding: 30px 0 0 0;
   text-align: center;
+  transition: transform 0.4s ease;
+}
+
+.figure:hover .caption {
+  transform: translateY(5px);
 }
 
 .person {
@@ -281,7 +354,7 @@
   line-height: 1.4;
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
+/* ===== RESPONSIVE DESIGN ÎMBUNĂTĂȚIT ===== */
 
 /* Tablet */
 @media (max-width: 1024px) {
@@ -306,6 +379,16 @@
 
   .lead {
     text-align: left;
+  }
+
+  .imageWrap {
+    max-width: 600px;
+    margin: 0 auto;
+    transform: none;
+  }
+
+  .imageContainer:hover .imageWrap {
+    transform: translateY(-8px);
   }
 }
 
@@ -345,6 +428,21 @@
     max-width: 280px;
     justify-content: center;
   }
+
+  .imageWrap {
+    border-radius: 16px;
+    aspect-ratio: 4/3;
+  }
+
+  .floatingShadow {
+    bottom: -15px;
+    height: 30px;
+    filter: blur(12px);
+  }
+
+  .floatingAccent {
+    display: none; /* Ascundem pe mobile pentru performanță */
+  }
 }
 
 /* Mobile Small */
@@ -369,10 +467,22 @@
   .lead {
     font-size: 1rem;
     padding-left: 14px;
+    margin-bottom: 24px;
+  }
+
+  .paragraphs {
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .imageWrap {
+    border-radius: 12px;
+    aspect-ratio: 1/1;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08), 0 5px 20px rgba(0, 0, 0, 0.06);
   }
 
   .caption {
-    padding-top: 16px;
+    padding-top: 20px;
   }
 
   .person {
@@ -382,20 +492,79 @@
   .role {
     font-size: 0.85rem;
   }
+
+  .floatingShadow {
+    bottom: -10px;
+    height: 20px;
+    filter: blur(8px);
+  }
+}
+
+/* Extra Small Devices */
+@media (max-width: 360px) {
+  .section {
+    padding: 40px 16px;
+  }
+
+  .grid {
+    gap: 30px;
+  }
+
+  .imageWrap {
+    aspect-ratio: 3/4;
+  }
+}
+
+/* High-resolution displays */
+@media (min-width: 1400px) and (min-height: 800px) {
+  .imageWrap {
+    border-radius: 24px;
+  }
+
+  .imageContainer:hover .imageWrap {
+    transform: translateZ(30px) rotateX(0deg) rotateY(0deg) translateY(-15px);
+  }
 }
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   .cta,
-  .image {
+  .image,
+  .imageWrap,
+  .floatingShadow,
+  .floatingAccent,
+  .caption {
     transition: none;
+    transform: none !important;
+    animation: none;
   }
 
   .cta:hover {
     transform: none;
   }
 
-  .imageWrap:hover .image {
-    transform: none;
+  .imageContainer:hover .image {
+    transform: scale(1.01);
+  }
+
+  .floatingAccent,
+  .floatingShadow {
+    display: none;
+  }
+}
+
+/* Touch devices optimization */
+@media (hover: none) and (pointer: coarse) {
+  .imageWrap {
+    transform: none !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1), 0 5px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .floatingAccent {
+    display: none;
+  }
+
+  .floatingShadow {
+    opacity: 0.5;
   }
 }

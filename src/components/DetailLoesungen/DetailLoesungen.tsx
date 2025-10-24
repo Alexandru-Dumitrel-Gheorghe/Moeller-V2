@@ -72,16 +72,22 @@ export default function DetailLoesungen() {
 
           {/* RIGHT - Image */}
           <figure className={styles.figure}>
-            <div className={styles.imageWrap}>
-              <Image
-                src="/images/KFM.avif"
-                alt="Klaudia & Frank Möller in moderner Küche"
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className={styles.image}
-                priority
-              />
-              <span className={styles.imageGlow} aria-hidden />
+            <div className={styles.imageContainer}>
+              <div className={styles.imageWrap}>
+                <Image
+                  src="/images/KFM.avif"
+                  alt="Klaudia & Frank Möller in moderner Küche"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className={styles.image}
+                  priority
+                />
+                <span className={styles.imageGlow} aria-hidden />
+              </div>
+
+              {/* Floating elements for 3D effect */}
+              <div className={styles.floatingShadow} aria-hidden />
+              <div className={styles.floatingAccent} aria-hidden />
             </div>
 
             <figcaption className={styles.caption}>
