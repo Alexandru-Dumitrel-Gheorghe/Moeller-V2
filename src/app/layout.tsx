@@ -29,8 +29,8 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Header />
         <main className="appMain noHeaderOffset">{children}</main>
-        <ScrollToTop />
         <Footer /> {/* ✅ Footer adăugat după conținut */}
+        <ScrollToTop />
       </body>
     </html>
   );

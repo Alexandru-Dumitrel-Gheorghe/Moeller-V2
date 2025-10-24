@@ -1,0 +1,51 @@
+.scrollSection {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scrollSection.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered animations for children */
+.scrollSection.stagger > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scrollSection.stagger.visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scrollSection.stagger.visible > *:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.scrollSection.stagger.visible > *:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.scrollSection.stagger.visible > *:nth-child(3) {
+  transition-delay: 0.3s;
+}
+.scrollSection.stagger.visible > *:nth-child(4) {
+  transition-delay: 0.4s;
+}
+.scrollSection.stagger.visible > *:nth-child(5) {
+  transition-delay: 0.5s;
+}
+.scrollSection.stagger.visible > *:nth-child(6) {
+  transition-delay: 0.6s;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .scrollSection,
+  .scrollSection.stagger > * {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}

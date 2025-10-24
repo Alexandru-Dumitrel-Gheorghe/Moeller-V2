@@ -1,0 +1,297 @@
+/* ===== MAIN SCROLL PROGRESS BAR ===== */
+.scrollProgress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 10000;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scrollProgress.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.progressBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--red-dark),
+    var(--red-medium),
+    var(--red-light)
+  );
+  transform-origin: left;
+  transition: transform 0.1s ease-out;
+}
+
+.progressGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(213, 25, 32, 0.3),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.scrollProgress.visible .progressGlow {
+  opacity: 1;
+  animation: progressGlow 2s ease-in-out infinite;
+}
+
+@keyframes progressGlow {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* ===== SCROLL INDICATORS ===== */
+.scrollIndicators {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 9999;
+  opacity: 0;
+  animation: fadeInIndicators 1s ease 2s forwards;
+}
+
+@keyframes fadeInIndicators {
+  to {
+    opacity: 1;
+  }
+}
+
+.scrollHint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-color);
+}
+
+/* Mouse Animation */
+.mouse {
+  width: 24px;
+  height: 40px;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  position: relative;
+}
+
+.wheel {
+  width: 3px;
+  height: 8px;
+  background: var(--red-medium);
+  border-radius: 2px;
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scrollWheel 2s infinite;
+}
+
+@keyframes scrollWheel {
+  0% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) translateY(16px);
+    opacity: 0;
+  }
+}
+
+/* Arrows Animation */
+.arrows {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.arrows span {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--red-medium);
+  border-bottom: 2px solid var(--red-medium);
+  transform: rotate(45deg);
+  animation: scrollArrows 2s infinite;
+}
+
+.arrows span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+@keyframes scrollArrows {
+  0% {
+    opacity: 0;
+    transform: rotate(45deg) translate(-5px, -5px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+}
+
+/* ===== SMOOTH SCROLL BEHAVIOR ===== */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ===== SECTION SCROLL EFFECTS ===== */
+.scrollSection {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scrollSection.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered animations for children */
+.scrollSection.stagger > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scrollSection.stagger.visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scrollSection.stagger.visible > *:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.scrollSection.stagger.visible > *:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.scrollSection.stagger.visible > *:nth-child(3) {
+  transition-delay: 0.3s;
+}
+.scrollSection.stagger.visible > *:nth-child(4) {
+  transition-delay: 0.4s;
+}
+.scrollSection.stagger.visible > *:nth-child(5) {
+  transition-delay: 0.5s;
+}
+
+/* ===== PARALLAX EFFECTS ===== */
+.parallax {
+  transform: translateY(0);
+  transition: transform 0.1s ease-out;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .scrollIndicators {
+    bottom: 30px;
+    right: 30px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .scrollProgress {
+    height: 2px;
+  }
+
+  .scrollIndicators {
+    bottom: 20px;
+    right: 20px;
+    transform: scale(0.8);
+  }
+
+  .mouse {
+    width: 20px;
+    height: 32px;
+  }
+
+  .wheel {
+    width: 2px;
+    height: 6px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .scrollIndicators {
+    bottom: 16px;
+    right: 16px;
+    transform: scale(0.7);
+  }
+}
+
+/* Large Screens */
+@media (min-width: 1440px) {
+  .scrollIndicators {
+    bottom: 50px;
+    right: 50px;
+  }
+}
+
+/* ===== REDUCED MOTION SUPPORT ===== */
+@media (prefers-reduced-motion: reduce) {
+  .scrollProgress,
+  .scrollIndicators,
+  .scrollSection,
+  .parallax {
+    transition: none;
+    animation: none;
+  }
+
+  .scrollProgress.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .scrollSection {
+    opacity: 1;
+    transform: none;
+  }
+
+  .scrollSection.stagger > * {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ===== DARK THEME SUPPORT ===== */
+@media (prefers-color-scheme: dark) {
+  .mouse {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .scrollHint {
+    color: rgba(255, 255, 255, 0.8);
+  }
+}

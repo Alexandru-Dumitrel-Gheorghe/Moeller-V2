@@ -13,22 +13,67 @@ import DetailLoesungen from "@/components/DetailLoesungen/DetailLoesungen";
 import Leistungen from "@/components/Leistungen/Leistungen";
 import ServicesOverview from "@/components/ServicesOverview/ServicesOverview";
 
+// Importă noile componente pentru scroll effects
+import SmoothScroll from "@/components/SmoothScroll/SmoothScroll";
+import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
+import { ScrollSection } from "@/components/ScrollSection/ScrollSection";
+
 export default function Home() {
   return (
     <div className={styles.page}>
+      {/* Efectele globale de scroll */}
+      <SmoothScroll />
+
+      {/* Secțiuni cu animații la scroll */}
       <VideoHero />
-      <Ehrlichkeit />
-      <ReferenzenHero />
-      <QualitatBanner />
-      <KuechenHero />
-      <ServiceBanner />
-      <CtaSection />
-      <DetailLoesungen />
-      <Leistungen />
-      <ServicesOverview />
-      <ReviewsSection />
-      <FAQSection />
-      <ContactForm />
+
+      <ScrollSection stagger={true}>
+        <Ehrlichkeit />
+      </ScrollSection>
+
+      <ScrollSection>
+        <ReferenzenHero />
+      </ScrollSection>
+
+      <ScrollSection stagger={true}>
+        <QualitatBanner />
+      </ScrollSection>
+
+      <ScrollSection>
+        <KuechenHero />
+      </ScrollSection>
+
+      <ScrollSection stagger={true}>
+        <ServiceBanner />
+      </ScrollSection>
+
+      <ScrollSection>
+        <CtaSection />
+      </ScrollSection>
+
+      <ScrollSection stagger={true}>
+        <DetailLoesungen />
+      </ScrollSection>
+
+      <ScrollSection>
+        <Leistungen />
+      </ScrollSection>
+
+      <ScrollSection stagger={true}>
+        <ServicesOverview />
+      </ScrollSection>
+
+      <ScrollSection>
+        <ReviewsSection />
+      </ScrollSection>
+
+      <ScrollSection stagger={true}>
+        <FAQSection />
+      </ScrollSection>
+
+      <ScrollSection>
+        <ContactForm />
+      </ScrollSection>
     </div>
   );
 }

@@ -356,6 +356,7 @@
 }
 
 /* Submit Button */
+/* Submit Button – pătrat, ca celelalte CTA-uri */
 .submitButton {
   display: inline-flex;
   align-items: center;
@@ -364,7 +365,7 @@
   background: transparent;
   color: var(--text-color);
   border: 2px solid rgba(0, 0, 0, 0.8);
-  border-radius: 50px;
+  border-radius: 12px; /* ⬅️ a fost 50px */
   font-size: clamp(0.9rem, 1.8vw, 1rem);
   font-weight: 600;
   text-decoration: none;
@@ -378,11 +379,11 @@
 }
 
 .submitButton:hover {
-  background: rgba(213, 25, 32, 0.05);
+  background: var(--red-medium); /* ⬅️ la fel ca squareCta */
   border-color: var(--red-medium);
-  color: var(--red-medium);
-  transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(213, 25, 32, 0.15);
+  color: #fff;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(213, 25, 32, 0.25);
 }
 
 .buttonArrow {
@@ -402,7 +403,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(213, 25, 32, 0.2),
+    rgba(255, 255, 255, 0.2),
     transparent
   );
   transition: left 0.6s ease;
@@ -410,6 +411,12 @@
 
 .submitButton:hover .buttonLine {
   left: 100%;
+}
+
+.buttonText {
+  /* opțional, dacă vrei un look mai „buttony” pe dark/light */
+  letter-spacing: 0.06em;
+  text-transform: none;
 }
 
 /* ===== RESPONSIVE DESIGN ===== */

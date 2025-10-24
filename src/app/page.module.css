@@ -1,0 +1,56 @@
+.page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Smooth scrolling for the entire page */
+@media (prefers-reduced-motion: no-preference) {
+  .page {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom scrollbar for the entire page */
+.page::-webkit-scrollbar {
+  width: 8px;
+}
+
+.page::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.page::-webkit-scrollbar-thumb {
+  background: var(--red-medium);
+  border-radius: 4px;
+}
+
+.page::-webkit-scrollbar-thumb:hover {
+  background: var(--red-dark);
+}
+
+/* Firefox scrollbar */
+.page {
+  scrollbar-width: thin;
+  scrollbar-color: var(--red-medium) rgba(0, 0, 0, 0.05);
+}
+
+/* Performance optimizations */
+.page {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .page {
+    scroll-behavior: auto;
+  }
+
+  .page > * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

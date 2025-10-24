@@ -3,12 +3,17 @@
 import styles from "./Header.module.css";
 import { FiGrid, FiX } from "react-icons/fi";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation"; // ✅ Import pentru navigare
+import { useRouter } from "next/navigation";
+
+// 🔽 importă Modal + (opțional) ContactForm
+import Modal from "@/components/Modal/Modal";
+import ContactForm from "@/components/ContactForm/ContactForm";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const router = useRouter(); // ✅ Inițializează router-ul
+  const [isModalOpen, setIsModalOpen] = useState(false); // 🔴 control modal
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -16,12 +21,20 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const openModal = () => {
+    setIsModalOpen(true);
+    setMenuOpen(false);
+  };
+
+  const closeModal = () => setIsModalOpen(false);
+
   const menuItems = [
     { name: "Küchen", href: "#kuechen" },
     { name: "Referenzen", href: "/referenzen" },
     { name: "Qualität", href: "#qualitat" },
     { name: "Ehrlichkeit", href: "#ehrlichkeit" },
     { name: "Showroom", href: "#showroom" },
+    // Notă: Kontakt va deschide modalul (interceptăm click-ul)
     { name: "Kontakt", href: "#kontakt" },
   ];
 
@@ -49,7 +62,7 @@ export default function Header() {
         <div
           className={styles.logoWrap}
           aria-label="Küchen by Möller"
-          onClick={() => router.push("/")} // ✅ Redirecționează spre homepage
+          onClick={() => router.push("/")}
           style={{ cursor: "pointer" }}
         >
           <div className={styles.logoBox}>
@@ -70,9 +83,10 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Dreapta: CTA pătrat */}
-        <a
-          href="#kontakt"
+        {/* Dreapta: CTA pătrat → deschide modal */}
+        <button
+          type="button"
+          onClick={openModal}
           className={styles.cta}
           aria-label="Termin vereinbaren"
         >
@@ -90,7 +104,7 @@ export default function Header() {
           </span>
           <div className={styles.ctaHover} />
           <div className={styles.ctaLine} />
-        </a>
+        </button>
       </div>
 
       {/* Dropdown Menu */}
@@ -113,7 +127,15 @@ export default function Header() {
                 key={item.name}
                 href={item.href}
                 className={styles.menuItem}
-                onClick={() => setMenuOpen(false)}
+                onClick={(e) => {
+                  // Kontakt deschide modalul
+                  if (item.href === "#kontakt") {
+                    e.preventDefault();
+                    openModal();
+                    return;
+                  }
+                  setMenuOpen(false);
+                }}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <span className={styles.menuNumber}>0{index + 1}</span>
@@ -145,6 +167,17 @@ export default function Header() {
           onClick={() => setMenuOpen(false)}
         />
       </div>
+
+      {/* 🔴 Modal global în Header – apare la „Termin vereinbaren” sau „Kontakt” */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        title="Termin vereinbaren"
+        size="lg"
+      >
+        {/* conținutul modalului: poți înlocui cu altceva */}
+        <ContactForm />
+      </Modal>
     </header>
   );
 }
