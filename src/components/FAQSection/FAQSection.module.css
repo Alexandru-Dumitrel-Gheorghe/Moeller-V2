@@ -66,7 +66,7 @@
 .container {
   position: relative;
   z-index: 1;
-  max-width: 1400px; /* Width de 1400px */
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -82,7 +82,7 @@
 /* Header - Left side */
 .header {
   flex: 1;
-  min-width: 0; /* Previne overflow-ul */
+  min-width: 0;
 }
 
 .title {
@@ -188,6 +188,14 @@
   transform: rotate(90deg);
 }
 
+/* Content Layout - FAQ left, Contact Card right */
+.contentLayout {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 60px;
+  align-items: start;
+}
+
 /* FAQ Container */
 .faqContainer {
   display: flex;
@@ -286,6 +294,88 @@
   margin: 0;
 }
 
+/* Contact Card */
+.contactCard {
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px 32px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  text-align: center;
+  position: sticky;
+  top: 100px;
+}
+
+.contactIcon {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, var(--red-medium), var(--red-dark));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  color: white;
+}
+
+.contactTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 16px;
+}
+
+.contactText {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-light);
+  margin-bottom: 32px;
+}
+
+.contactButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--red-medium);
+  color: white;
+  text-decoration: none;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 2px solid var(--red-medium);
+  width: 100%;
+  max-width: 240px;
+}
+
+.contactButton:hover {
+  background: var(--red-dark);
+  border-color: var(--red-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(213, 25, 32, 0.25);
+}
+
+.contactInfo {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.contactInfoItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.contactInfoItem:last-child {
+  margin-bottom: 0;
+}
+
 /* ===== RESPONSIVE DESIGN ===== */
 
 /* Tablet */
@@ -296,6 +386,18 @@
 
   .headerRow {
     gap: 30px;
+  }
+
+  .contentLayout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .contactCard {
+    position: relative;
+    top: 0;
+    max-width: 500px;
+    margin: 0 auto;
   }
 
   .question {
@@ -352,6 +454,20 @@
   .questionText {
     font-size: 1rem;
   }
+
+  .contactCard {
+    padding: 32px 24px;
+  }
+
+  .contactIcon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 20px;
+  }
+
+  .contactTitle {
+    font-size: 1.3rem;
+  }
 }
 
 /* Mobile Small */
@@ -388,6 +504,15 @@
   .answerContent {
     padding: 0 20px 18px 60px;
   }
+
+  .contactCard {
+    padding: 28px 20px;
+  }
+
+  .contactButton {
+    padding: 14px 24px;
+    font-size: 0.9rem;
+  }
 }
 
 /* Reduced Motion */
@@ -395,7 +520,8 @@
   .faqItem,
   .question,
   .squareCta,
-  .arrow {
+  .arrow,
+  .contactButton {
     transition: none;
   }
 
@@ -404,6 +530,10 @@
   }
 
   .squareCta:hover {
+    transform: none;
+  }
+
+  .contactButton:hover {
     transform: none;
   }
 }
