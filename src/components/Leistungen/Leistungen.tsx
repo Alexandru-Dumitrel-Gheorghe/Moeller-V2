@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import styles from "./Leistungen.module.css";
+import Modal from "@/components/Modal/Modal";
 
 type ServiceItem = {
   percentage: string;
@@ -19,11 +21,7 @@ const SERVICES: ServiceItem[] = [
     title: "QUALITÄT",
     description: "Hochwertige Materialien & Verarbeitung",
   },
-  {
-    percentage: "100%",
-    title: "SERVICE",
-    description: "Alles aus einer Hand",
-  },
+  { percentage: "100%", title: "SERVICE", description: "Alles aus einer Hand" },
   {
     percentage: "100%",
     title: "KREATIV",
@@ -59,6 +57,8 @@ const KITCHEN_TYPES = [
 ];
 
 export default function Leistungen() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <>
       <section className={styles.section} aria-labelledby="leistungen-title">
@@ -138,7 +138,13 @@ export default function Leistungen() {
               <p className={styles.ctaDescription}>
                 Vereinbaren Sie jetzt Ihr unverbindliches Beratungsgespräch
               </p>
-              <a href="#kontakt" className={styles.ctaButton}>
+              <button
+                type="button"
+                className={styles.ctaButton}
+                onClick={() => setIsModalOpen(true)}
+                aria-haspopup="dialog"
+                aria-controls="leistungen-modal"
+              >
                 <span className={styles.buttonText}>Kostenlose Beratung</span>
                 <div className={styles.buttonArrow}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -151,11 +157,19 @@ export default function Leistungen() {
                     />
                   </svg>
                 </div>
-              </a>
+              </button>
             </div>
           </section>
         </div>
       </section>
+
+      {/* Modal */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Kostenlose Beratung anfordern"
+        description="Vereinbaren Sie noch heute einen Termin in unserem Showroom oder lassen Sie sich von unseren Experten beraten."
+      />
     </>
   );
 }

@@ -1,9 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import styles from "./ServicesOverview.module.css";
+import Modal from "@/components/Modal/Modal";
 
 const ServicesOverview: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const services = [
     {
       title: "Leicht Design Küche mit Insel und Berbel Dunstabzug",
@@ -13,6 +17,7 @@ const ServicesOverview: React.FC = () => {
       ctaText: "Jetzt entdecken",
       link: "#kuechen",
       image: "/images/Hero-gg1.png",
+      opensModal: false,
     },
     {
       title: "Interior Design",
@@ -22,6 +27,7 @@ const ServicesOverview: React.FC = () => {
       ctaText: "Jetzt entdecken",
       link: "#design",
       image: "/images/D4-900x500.png",
+      opensModal: false,
     },
     {
       title: "Sie haben Fragen?",
@@ -31,93 +37,138 @@ const ServicesOverview: React.FC = () => {
       ctaText: "Jetzt stellen",
       link: "#kontakt",
       image: "/images/faq1.png",
+      opensModal: true, // ⬅️ acest card deschide modalul
     },
   ];
 
   return (
-    <section className={styles.section} aria-labelledby="services-title">
-      {/* Background Elements */}
-      <div className={styles.backgroundElements}>
-        <div className={styles.backgroundGrid} />
-        <div className={styles.cornerAccent} />
-        <div className={styles.cornerAccent} />
-      </div>
-
-      {/* Red Accent Line */}
-      <div className={styles.redAccent} />
-
-      <div className={styles.container}>
-        {/* Header */}
-        <div className={styles.header}>
-          <h2 id="services-title" className={styles.title}>
-            <span className={styles.titleMain}>IHRE BEREICHE</span>
-            <span className={styles.titleSub}>
-              Ihre wichtigsten Bereiche auf einen Blick
-            </span>
-          </h2>
-          <div className={styles.titleUnderline}>
-            <div className={styles.underlineMain} />
-            <div className={styles.underlineAccent} />
-          </div>
+    <>
+      <section className={styles.section} aria-labelledby="services-title">
+        {/* Background Elements */}
+        <div className={styles.backgroundElements}>
+          <div className={styles.backgroundGrid} />
+          <div className={styles.cornerAccent} />
+          <div className={styles.cornerAccent} />
         </div>
 
-        {/* Services Grid */}
-        <div className={styles.servicesGrid}>
-          {services.map((service, index) => (
-            <article key={index} className={styles.serviceCard}>
-              {/* Image Container */}
-              <div className={styles.imageContainer}>
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className={styles.image}
-                  priority={index === 0}
-                />
-                <div className={styles.imageOverlay} />
+        {/* Red Accent Line */}
+        <div className={styles.redAccent} />
 
-                {/* Category Badge pe imagine */}
-                <div className={styles.categoryBadge}>{service.category}</div>
-              </div>
+        <div className={styles.container}>
+          {/* Header */}
+          <div className={styles.header}>
+            <h2 id="services-title" className={styles.title}>
+              <span className={styles.titleMain}>IHRE BEREICHE</span>
+              <span className={styles.titleSub}>
+                Ihre wichtigsten Bereiche auf einen Blick
+              </span>
+            </h2>
+            <div className={styles.titleUnderline}>
+              <div className={styles.underlineMain} />
+              <div className={styles.underlineAccent} />
+            </div>
+          </div>
 
-              {/* Content */}
-              <div className={styles.cardContent}>
-                {/* Title with Red Underline */}
-                <div className={styles.titleWrapper}>
-                  <h3 className={styles.serviceTitle}>{service.title}</h3>
-                  <div className={styles.titleLine} />
+          {/* Services Grid */}
+          <div className={styles.servicesGrid}>
+            {services.map((service, index) => (
+              <article key={index} className={styles.serviceCard}>
+                {/* Image Container */}
+                <div className={styles.imageContainer}>
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className={styles.image}
+                    priority={index === 0}
+                  />
+                  <div className={styles.imageOverlay} />
+
+                  {/* Category Badge on image */}
+                  <div className={styles.categoryBadge}>{service.category}</div>
                 </div>
 
-                <p className={styles.serviceDescription}>
-                  {service.description}
-                </p>
-
-                {/* CTA Button with Border */}
-                <a href={service.link} className={styles.ctaLink}>
-                  <span className={styles.ctaText}>{service.ctaText}</span>
-                  <div className={styles.ctaArrow}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M5 12h14m-7-7l7 7-7 7"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                {/* Content */}
+                <div className={styles.cardContent}>
+                  {/* Title with Red Underline */}
+                  <div className={styles.titleWrapper}>
+                    <h3 className={styles.serviceTitle}>{service.title}</h3>
+                    <div className={styles.titleLine} />
                   </div>
-                  <div className={styles.buttonBorder} />
-                </a>
-              </div>
 
-              {/* Card Accent Line */}
-              <div className={styles.cardAccent} />
-            </article>
-          ))}
+                  <p className={styles.serviceDescription}>
+                    {service.description}
+                  </p>
+
+                  {/* CTA */}
+                  {service.opensModal ? (
+                    <button
+                      type="button"
+                      className={styles.ctaLink}
+                      onClick={() => setIsOpen(true)}
+                      aria-haspopup="dialog"
+                      aria-controls="services-modal"
+                    >
+                      <span className={styles.ctaText}>{service.ctaText}</span>
+                      <div className={styles.ctaArrow}>
+                        <svg
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
+                          <path
+                            d="M5 12h14m-7-7l7 7-7 7"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
+                      <div className={styles.buttonBorder} />
+                    </button>
+                  ) : (
+                    <a href={service.link} className={styles.ctaLink}>
+                      <span className={styles.ctaText}>{service.ctaText}</span>
+                      <div className={styles.ctaArrow}>
+                        <svg
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
+                          <path
+                            d="M5 12h14m-7-7l7 7-7 7"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
+                      <div className={styles.buttonBorder} />
+                    </a>
+                  )}
+                </div>
+
+                {/* Card Accent Line */}
+                <div className={styles.cardAccent} />
+              </article>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Modal (portalized) */}
+      <Modal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        title="Kostenlose Beratung anfordern"
+        description="Stellen Sie uns Ihre Frage – wir melden uns schnellstmöglich."
+      />
+    </>
   );
 };
 
