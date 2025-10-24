@@ -192,3 +192,8 @@ body::before {
 .menu-contact a:hover {
   color: var(--red-light);
 }
+:root {
+  /* deja ai roșurile + bg-urile; adaugăm gutter & container */
+  --page-gutter: clamp(8px, 4vw, 8px);
+  --container: 1400px;
+}

@@ -141,13 +141,13 @@
 }
 
 /* === MAIN CONTENT === */
+/* === MAIN CONTENT === */
 .content {
   position: absolute;
   bottom: clamp(60px, 10vh, 160px);
-  left: clamp(24px, 5vw, 120px);
-  right: clamp(24px, 5vw, 120px);
+  left: 0; /* <— nu mai setăm offset direct */
+  right: 0; /* <— îl centerăm ca în header */
   z-index: 3;
-  max-width: 650px;
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
@@ -160,6 +160,9 @@
 
 .contentInner {
   width: 100%;
+  max-width: var(--container); /* <— la fel ca header */
+  margin: 0 auto; /* <— centrare */
+  padding-inline: var(--page-gutter); /* <— același gutter ca header */
 }
 
 /* TITLU */

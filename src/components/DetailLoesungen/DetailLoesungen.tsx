@@ -53,8 +53,8 @@ export default function DetailLoesungen() {
               </p>
             </div>
 
-            <Link href="/team" className={styles.cta}>
-              <span className={styles.ctaText}>Team kennenlernen</span>
+            <Link href="/ueber-uns" className={styles.cta}>
+              <span className={styles.ctaText}>MEHR ERFAHREN</span>
               <div className={styles.ctaArrow}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                   <path

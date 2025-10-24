@@ -8,11 +8,8 @@ type ModalSize = "sm" | "md" | "lg" | "xl";
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  /** Titlu afişat în header-ul modalului */
   title?: string;
-  /** Dimensiune modal: afectează lățimea maximă */
   size?: ModalSize;
-  /** Conținutul modalului (formularul tău etc.) */
   children?: React.ReactNode;
 }
 
@@ -20,7 +17,7 @@ export default function Modal({
   isOpen,
   onClose,
   title = "Kontaktieren Sie uns",
-  size = "lg",
+  size = "md",
   children,
 }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
@@ -50,10 +47,6 @@ export default function Modal({
 
   if (!isOpen) return null;
 
-  // Lățime în funcție de size (fără să-ți cer update în CSS)
-  const maxWidth =
-    size === "sm" ? 520 : size === "md" ? 680 : size === "lg" ? 820 : 1040;
-
   return (
     <div
       className={styles.modalOverlay}
@@ -62,22 +55,27 @@ export default function Modal({
       aria-modal="true"
       aria-label={title}
     >
-      <div
-        ref={modalRef}
-        className={styles.modal}
-        style={{ maxWidth, width: "100%" }}
-      >
+      {/* Background Elements */}
+      <div className={styles.backgroundElements}>
+        <div className={styles.backgroundGrid} />
+        <div className={styles.cornerAccent} />
+        <div className={styles.cornerAccent} />
+      </div>
+
+      {/* Red Accent Line */}
+      <div className={styles.redAccent} />
+
+      <div ref={modalRef} className={`${styles.modal} ${styles[size]}`}>
         {/* Header */}
         <div className={styles.modalHeader}>
           <div className={styles.headerContent}>
             <h2 className={styles.modalTitle}>{title}</h2>
-            {/* poți adăuga/substitui subtitlul dacă vrei */}
           </div>
 
           <button
             onClick={onClose}
             className={styles.closeButton}
-            aria-label="Popup schließen"
+            aria-label="Modal schließen"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
               <path
@@ -91,10 +89,10 @@ export default function Modal({
           </button>
         </div>
 
-        {/* Body – conținutul din props.children (ex. <ContactForm />) */}
+        {/* Body */}
         <div className={styles.modalBody}>
           {children ?? (
-            <p style={{ margin: 0 }}>
+            <p style={{ margin: 0, color: "var(--text-color)" }}>
               (Aici poți plasa un formular sau conținutul dorit.)
             </p>
           )}
