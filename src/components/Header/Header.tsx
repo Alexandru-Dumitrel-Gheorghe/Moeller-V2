@@ -35,11 +35,11 @@ export default function Header() {
         {/* Stânga: Menu Icon */}
         <button
           className={styles.menuIcon}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          onClick={() => setMenuOpen(true)}
+          aria-label="Open menu"
           aria-pressed={menuOpen}
         >
-          {menuOpen ? <FiX size={20} /> : <FiGrid size={20} />}
+          <FiGrid size={20} />
           <div className={styles.menuHover} />
         </button>
 
@@ -91,6 +91,15 @@ export default function Header() {
         className={`${styles.dropdownMenu} ${menuOpen ? styles.menuOpen : ""}`}
       >
         <div className={styles.menuContent}>
+          {/* Buton X în panou (vizibil deasupra overlay-ului) */}
+          <button
+            className={styles.closeBtn}
+            onClick={() => setMenuOpen(false)}
+            aria-label="Close menu"
+          >
+            <FiX size={22} />
+          </button>
+
           <nav className={styles.menuNav} aria-label="Main navigation">
             {menuItems.map((item, index) => (
               <a
@@ -122,6 +131,8 @@ export default function Header() {
             </div>
           </div>
         </div>
+
+        {/* overlay care închide meniul la click */}
         <div
           className={styles.menuOverlay}
           onClick={() => setMenuOpen(false)}

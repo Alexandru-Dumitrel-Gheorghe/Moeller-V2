@@ -32,13 +32,6 @@ export default function VideoHero() {
         <div className={styles.floatingShape} />
       </div>
 
-      {/* Background Pattern */}
-      <div className={styles.backgroundPattern}>
-        <div className={styles.patternLine}></div>
-        <div className={styles.patternLine}></div>
-        <div className={styles.patternLine}></div>
-      </div>
-
       {/* Red Accent Line */}
       <div className={styles.redAccent} />
 
@@ -95,7 +88,6 @@ export default function VideoHero() {
                   />
                 </svg>
               </div>
-              <div className={styles.ctaLine} />
             </a>
           </div>
         </div>
