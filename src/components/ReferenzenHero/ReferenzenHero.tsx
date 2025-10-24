@@ -32,7 +32,7 @@ const ReferenzenVideo: React.FC = () => {
         muted
         playsInline
         preload="auto"
-        poster="/videos/referenzen-poster.jpg"
+        poster="/images/Hero-gg1.png"
       >
         <source src="/videos/hero-2.mp4" type="video/mp4" />
         {/* Fallback pentru browsere care nu suportă video */}

@@ -44,7 +44,7 @@ export default function VideoHero() {
         muted
         playsInline
         preload="auto"
-        poster="/videos/hero-2-poster.jpg"
+        poster="/images/Hero-gg1.png"
       >
         <source src="/videos/video4.mp4" type="video/mp4" />
       </video>

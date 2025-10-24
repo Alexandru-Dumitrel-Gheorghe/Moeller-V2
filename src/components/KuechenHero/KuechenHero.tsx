@@ -32,7 +32,7 @@ const KuechenVideo: React.FC = () => {
         muted
         playsInline
         preload="auto"
-        poster="/videos/kuechen-poster.jpg"
+        poster="/images/Hero-gg1.png"
       >
         <source src="/videos/video-hero.mp4" type="video/mp4" />
         {/* Fallback pentru browsere care nu suportă video */}
