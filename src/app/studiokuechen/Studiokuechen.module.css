@@ -1,6 +1,5 @@
 .page {
   position: relative;
-  padding: clamp(80px, 10vh, 120px) 0;
   background: var(--bg-light);
   color: var(--text-color);
   font-family: var(--font-primary);
@@ -9,7 +8,6 @@
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  margin-top: 5rem;
 }
 
 .page.visible {
@@ -234,6 +232,7 @@
 .ctaWrapper {
   display: flex;
   justify-content: center;
+  margin-bottom: 5rem;
 }
 
 .cta {

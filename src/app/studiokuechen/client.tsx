@@ -2,6 +2,10 @@
 
 import { useRef, useEffect, useState } from "react";
 import styles from "./Studiokuechen.module.css";
+
+// 👉 importă Hero-ul aici
+import HeroStudiokuechen from "./components/HeroStudiokuechen";
+
 import { StudioGrid } from "./components/StudioGrid";
 
 const tiles = [
@@ -100,30 +104,15 @@ export default function Client() {
       {/* Red Accent Line */}
       <div className={styles.redAccent} />
 
-      <div className={styles.container}>
-        {/* Header Section */}
-        <div className={styles.header}>
-          <h2 className={styles.title}>
-            <span className={styles.titleMain}>STUDIOKÜCHEN</span>
-            <span className={styles.titleSub}>Unsere Ausstellung</span>
-          </h2>
-          <div className={styles.titleUnderline}>
-            <div className={styles.underlineMain} />
-            <div className={styles.underlineAccent} />
-          </div>
-
-          <div className={styles.descriptionWrapper}>
-            <p className={styles.description}>
-              Entdecken Sie 10 einzigartige Küchenlandschaften in unserer
-              Ausstellung. Von modernen Inselküchen bis zu gemütlichen
-              Wohnküchen – Inspiration pur.
-            </p>
-          </div>
-        </div>
-      </div>
+      {/* === HERO SECTION (în locul textelor vechi) === */}
+      <HeroStudiokuechen
+        // poți schimba imaginile dacă vrei să fie exact cele din screenshot
+        leftImage="/images/küche1.png"
+        rightImage="/images/küchebackground.png"
+      />
 
       {/* Gallery Section - Full Width */}
-      <div className={styles.galleryContainer}>
+      <div id="galerie" className={styles.galleryContainer}>
         <StudioGrid tiles={tiles} />
       </div>
 
