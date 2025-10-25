@@ -12,10 +12,10 @@ import ContactForm from "@/components/ContactForm/ContactForm";
 import DetailLoesungen from "@/components/DetailLoesungen/DetailLoesungen";
 import Leistungen from "@/components/Leistungen/Leistungen";
 import ServicesOverview from "@/components/ServicesOverview/ServicesOverview";
+import KitchenShowcase from "@/components/KitchenShowcase/KitchenShowcase";
 
 // Importă noile componente pentru scroll effects
 import SmoothScroll from "@/components/SmoothScroll/SmoothScroll";
-import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 import { ScrollSection } from "@/components/ScrollSection/ScrollSection";
 
 export default function Home() {
@@ -61,6 +61,10 @@ export default function Home() {
 
       <ScrollSection stagger={true}>
         <ServicesOverview />
+      </ScrollSection>
+
+      <ScrollSection>
+        <KitchenShowcase />
       </ScrollSection>
 
       <ScrollSection>
